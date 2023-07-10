@@ -1,4 +1,4 @@
-# <p align="center">🟢 42-School-Lisbon </p>
+# <p align="center">🟢🟢🟢🟢 42-School-Lisbon 🟢🟢🟢🟢</p>
 
 <img align="left" src="https://upload.wikimedia.org/wikipedia/commons/8/8d/42_Logo.svg"  width="200" height="300" alt="Alt text" title="42 logo">
 <br><br><br><br>
