@@ -11,4 +11,4 @@
 <br>
 <p> <b>2.</b> To do so i have a while loop that iterates throught the source string "s2", until it finds null byte ('\0'). </p>
 <p> <b>3.</b> In each iteration, it copies the current character into the destination "s1" string. </p>
-<p> <b>6.</b> Finally, after the loop it add the null byte, therefore terminating correctly the destination "s1" string, and returns a pointer to it. </p>
+<p> <b>4.</b> Finally, after the loop it add the null byte, therefore terminating correctly the destination "s1" string, and returns a pointer to it. </p>
