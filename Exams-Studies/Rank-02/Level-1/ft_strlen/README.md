@@ -10,4 +10,4 @@ DESCRIPTION
 <br>
 <p> <b>2.</b> To do so i run a while loop that iterates the string until it reaches the null byte. </p>
 <p> <b>3.</b> In each iteration i increment my "i" variable that is effectively counting the number of characters. </p>
-<p> <b>6.</b> Finally, i return the "i" variable. </p>
+<p> <b>4.</b> Finally, i return the "i" variable. </p>
