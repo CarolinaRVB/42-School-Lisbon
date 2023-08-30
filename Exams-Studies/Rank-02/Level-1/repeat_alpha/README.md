@@ -8,3 +8,6 @@
 <p> <b>6.</b> If the current character in the string is equal to the character of the array. Then i initiate another loop limited by the value of that index, and i call the "write" function "x" number of times until the value of that index reached zero.</p>
 <p> <b>7.</b> After i reset the index variable used in the arrays, to zero, and i increment the variable in my string.</p>
 <p> <b>8.</b> Finally i write a newline character and terminate the program.</p>
+
+<br>
+<p><b>NOTE:</b> I should optimise this program, right now the if the character is a number, the program will enter correctly the first "if" condition to write the number, however it will also enter the second loop afterwards, which is searching for a match between the character and one character from the arrays. However this step is not necessary.</p>
