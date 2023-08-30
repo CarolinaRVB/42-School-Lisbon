@@ -30,22 +30,15 @@ int main(int argc, char *argv[])
 
 	while (argv[1][i] != '\0')
 	{
-		
+		if (argv[1][i] < 'a' || argv[1][i] >'z' || argv[1][i] < 'A' || argv[1][i] > 'Z')
+			write(1, &argv[1][i], 1);
 		while (alphabet_big[j] != '\0' && alphabet_small[j] != '\0')
 		{
 			if (argv[1][i] == alphabet_big[j] || argv[1][i] == alphabet_small[j])
 			{
-				if (j == 0)
-				{
+				while (j-- >= 0)
 					write(1, &argv[1][i], 1);
-					break ;
-				}
-				else
-				{
-					while (j-- >= 0)
-						write(1, &argv[1][i], 1);
-					break ;
-				}
+				break ;
 			}
 			else
 				j++;
