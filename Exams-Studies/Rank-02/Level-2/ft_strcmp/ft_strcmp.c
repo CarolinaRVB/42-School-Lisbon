@@ -29,35 +29,35 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-int	main()
-{
-	printf("\nTesting equal strings:\n\n");
-	char s1[] = "Hello world";
-	char s2[] = "Hello world";
+// int	main()
+// {
+// 	printf("\nTesting equal strings:\n\n");
+// 	char s1[] = "Hello world";
+// 	char s2[] = "Hello world";
 
-	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s1, s2));
-	printf("	Result for strcmp: %d\n\n", strcmp(s1, s2));
+// 	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s1, s2));
+// 	printf("	Result for strcmp: %d\n\n", strcmp(s1, s2));
 
-	printf("\nTesting s1 inferior than s2 (negative result):\n\n");
-	char s3[] = "Hello";
-	char s4[] = "Hello world";
+// 	printf("\nTesting s1 inferior than s2 (negative result):\n\n");
+// 	char s3[] = "Hello";
+// 	char s4[] = "Hello world";
 
-	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s3, s4));
-	printf("	Result for strcmp: %d\n\n", strcmp(s3, s4));
+// 	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s3, s4));
+// 	printf("	Result for strcmp: %d\n\n", strcmp(s3, s4));
 
-	printf("\nTesting s1 superior than s2 (positive result):\n\n");
-	char s5[] = "Hello world";
-	char s6[] = "Hello";
+// 	printf("\nTesting s1 superior than s2 (positive result):\n\n");
+// 	char s5[] = "Hello world";
+// 	char s6[] = "Hello";
 
-	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s5, s6));
-	printf("	Result for strcmp: %d\n\n", strcmp(s5, s6));
+// 	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s5, s6));
+// 	printf("	Result for strcmp: %d\n\n", strcmp(s5, s6));
 
-	printf("\nTesting for empty string:\n\n");
-	char s7[] = "";
-	char s8[] = "";
+// 	printf("\nTesting for empty string:\n\n");
+// 	char s7[] = "";
+// 	char s8[] = "";
 
-	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s7, s8));
-	printf("	Result for strcmp: %d\n\n", strcmp(s7, s8));
+// 	printf("	Result for ft_strcmp: %d\n", ft_strcmp(s7, s8));
+// 	printf("	Result for strcmp: %d\n\n", strcmp(s7, s8));
 
-	return (0);
-}
+// 	return (0);
+// }

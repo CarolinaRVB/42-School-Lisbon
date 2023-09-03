@@ -35,15 +35,15 @@ size_t	ft_strcspn(const char *s, const char *reject)
 	return (i);
 }
 
-int main() {
-    const char str1[] = "Hello, World!";
-    const char str2[] = "Woe";
-    
-    size_t result = ft_strcspn(str1, str2);
-    printf("The initial segment without characters from str2 is %zu characters long.\n", result);
+// int main() {
+// 	const char str1[] = "Hello, World!";
+// 	const char str2[] = "Woe";
+	
+// 	size_t result = ft_strcspn(str1, str2);
+// 	printf("The initial segment without characters from str2 is %zu characters long.\n", result);
 
-	size_t result2 = strcspn(str1, str2);
-	printf("The initial segment without characters from str2 is %zu characters long.\n", result2);
+// 	size_t result2 = strcspn(str1, str2);
+// 	printf("The initial segment without characters from str2 is %zu characters long.\n", result2);
 
-	return 0;
-}
+// 	return 0;
+// }
