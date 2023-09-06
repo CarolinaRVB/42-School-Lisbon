@@ -22,7 +22,6 @@ int	main(int argc, char *argv[])
 
 	int	i = 0;
 	int j = 0;
-	int	x;
 
 	while(argv[1][j] != '\0')
 		j++;
@@ -34,11 +33,7 @@ int	main(int argc, char *argv[])
 	while (argv[1][i] != '\0' && i <= j)
 	{
 		if (argv[1][i] == ' ' || argv[1][i] == '\t' || argv[1][i] == '\n')
-		{
-			x = 3;
-			while (x-- > 0)
-				write(1, " ", 1);
-		}			
+			write(1, "   ", 3);		
 		while ((argv[1][i] == ' ' || argv[1][i] == '\t' || argv[1][i] == '\n') && argv[1][i + 1] != '\0')
 			i++;
 		write(1, &argv[1][i], 1);
