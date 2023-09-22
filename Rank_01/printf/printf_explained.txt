@@ -1,0 +1,24 @@
+Printf Logic
+
+Objective: Create a function that can print any format of variable and returns the length of what was printed. For this the function has to be of the variadic type, meaning it has a variable number of arguments.
+
+Condition: First we have to check if the format is provided by the user, if its not then we return zero
+
+Then we use va_list to store the varible arguments. 
+Va_start is used to initialize the args variable with the first argument 
+Va_arg is the function that actualy retrieves each argument.
+
+How the main function works:
+	Loop condition that goes on until we don't have the any format to print.
+	The format to print is defined by the % character. So until we find that format, we use ft_putchar to print each character we find, and we count the length by each character printed.
+	If we find the format character, we increment by one to the next character that will tell us what format we have. Then we call the ft_checkformat function with that character, with the args and len variable as well.
+
+
+	At the end of the function, we call the va_end macro to clean up the args variable, and we return the len
+
+
+The checkformat function has divided the formats into 3 types: ints, strs, hexas
+
+
+For the hexas, the function is repeating the ft_put_hex, one with the type long int the format unsigned int, the other with the format unsigned long --> coulnd't find a way to optimise this
+
