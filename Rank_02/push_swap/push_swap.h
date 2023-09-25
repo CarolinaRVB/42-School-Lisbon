@@ -21,8 +21,10 @@ int		is_digit(char *av);
 int		valid_av(char **av, int size);
 int		valid_int(char **av, int size);
 int		no_dup(char **av, int size);
-int	error_exit();
-int		check_doubles(char **av, char c, int n);
-int		ft_atoi(char *str);
+int	    error_exit();
+long int		ft_atoll(char *str);
+int	count_words(char *str);
+char	*add_word(char *str, int start, int i);
+char	**ft_split(char *str);
 
 #endif
