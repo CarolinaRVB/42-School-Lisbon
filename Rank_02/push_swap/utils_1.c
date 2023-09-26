@@ -17,6 +17,8 @@ int	is_digit(char *av)
 	int i;
 
 	i = 0;
+	if (av[0] == '-')
+		i++;
 	while (av[i] != '\0')
 	{
 		if (av[i] >= '0' && av[i] <= '9')
@@ -80,6 +82,8 @@ char	*add_word(char *str, int start, int i)
 	j = i - start;
 	n = 0;
 	word = (char *)malloc(sizeof(char *) * j + 1);
+	if (!word)
+		return (NULL);
 	while (str[start] != '\0' && start <= i)
 	{
 		word[n] = str[start];

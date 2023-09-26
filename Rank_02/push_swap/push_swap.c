@@ -25,6 +25,7 @@ int main(int ac, char *av[])
 {
 	char	**args;
 	t_list	*stack_a = NULL;
+	t_list	*stack_b = NULL;
 	int	n;
 
 	n = ac;
@@ -36,16 +37,16 @@ int main(int ac, char *av[])
 		args = ft_split(av[1]);
 		ac = ft_strlen(args);
 	}	
-	if (valid_av(args, ac) != 0 || valid_int(args, ac) != 0 || no_dup(args, ac) != 0)
+	if (valid_av(args, ac) != 0 || valid_int(args, ac) != 0 || no_dup(args, ac, n) != 0)
 		return(error_exit());
 	
-	init_args(stack_a, args, n);
-	// t_list *node = stack_a;
-	// printf("node %ld\n", node->content);
-	// while (node) {
-	// 		printf("%ld\n", node->content);
-	// 		node = node->next;
-	// 	}
+	init_args(&stack_a, args, n);
+	// while(stack_a)
+	// {
+	// 	printf("%ld\n", stack_a->content);
+	// 	stack_a = stack_a->next;
+	// }
 	printf("sucess\n");
+	free_list(&stack_a);
 	return (0);
 }
