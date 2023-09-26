@@ -41,7 +41,7 @@ int	is_prime(int n)
 {
 	int	i = 2;
 
-	while (i * i <= n)
+	while (i < n)
 	{
 		if (n % i == 0)
 			return (0);
@@ -60,7 +60,7 @@ int	main(int argc, char *argv[])
 
 	int	n = ft_atoi(argv[1]);
 	int	res = 0;
-	while (n > 0)
+	while (n > 1)
 	{
 		if (is_prime(n))
 			res = res + n;

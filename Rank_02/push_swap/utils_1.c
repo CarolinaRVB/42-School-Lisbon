@@ -12,10 +12,12 @@
 
 #include "push_swap.h"
 
-int is_digit(char *av)
+int	is_digit(char *av)
 {
-	int i = 0;
-	while(av[i] != '\0')
+	int i;
+
+	i = 0;
+	while (av[i] != '\0')
 	{
 		if (av[i] >= '0' && av[i] <= '9')
 		{
@@ -29,10 +31,13 @@ int is_digit(char *av)
 
 long int	ft_atoll(char *str)
 {
-	long int	i = 0;
-	long int	res = 0;
-	long int	sign = 1;
+	long int	i;
+	long int	res;
+	long int	sign;
 
+	i = 0;
+	res = 0;
+	sign = 1;
 	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
 		i++;
 	while (str[i] == '-' || str[i] == '+')
@@ -49,8 +54,11 @@ long int	ft_atoll(char *str)
 
 int	count_words(char *str)
 {
-	int	i = 0;
-	int	word = 0;
+	int	i;
+	int	word;
+
+	i = 0;
+	word = 0;
 	while (str[i] != '\0')
 	{
 		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
@@ -65,10 +73,13 @@ int	count_words(char *str)
 
 char	*add_word(char *str, int start, int i)
 {
-	int 	j = i - start;
-	char	*word = (char *)malloc(sizeof(char *) * j + 1);
-	int	n = 0;
+	int 	j;
+	char	*word;
+	int		n;
 	
+	j = i - start;
+	n = 0;
+	word = (char *)malloc(sizeof(char *) * j + 1);
 	while (str[start] != '\0' && start <= i)
 	{
 		word[n] = str[start];
@@ -81,16 +92,18 @@ char	*add_word(char *str, int start, int i)
 
 char	**ft_split(char *str)
 {
-	int nwords = count_words(str);
-	int	i = 0;
-	int	j = 0;
-	int start = 0;
-	char **ar;
+	int 	nwords;
+	int		i;
+	int		j;
+	int 	start;
+	char 	**ar;
 
+	nwords = count_words(str);
+	i = 0;
+	j = 0;
 	ar = malloc(sizeof(char *) * nwords + 1);
 	if (!ar)
 		return (NULL);
-	
 	while (str[i] != '\0' && j < nwords)
 	{
 		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
@@ -99,8 +112,7 @@ char	**ft_split(char *str)
 		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
 			i++;
 		i--;
-		ar[j] = add_word(str, start, i);
-		j++;
+		ar[j++] = add_word(str, start, i);
 		i++;		
 	}
 	ar[j] = NULL;
