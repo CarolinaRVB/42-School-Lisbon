@@ -15,12 +15,14 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include<stdio.h>
+# include <stdio.h>
 
 
 typedef struct s_list
 {
-	long int			    content;
+	int			    content;
+	int				index;
+	
 	struct s_list	*next;
 }                   t_list;
 
@@ -40,5 +42,25 @@ int		ft_strlen(char **str);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 void	free_list(t_list **stack);
+int	list_size(t_list **stack);
+void	ft_add_node(t_list **lst, char *str, int index);
+void	reset_index(t_list **stack);
+int	is_sorted(t_list **stack);
+void	sort_list(t_list **a, t_list **b, int size);
+void	small_sort(t_list **a, t_list **b);
+void	big_sort(t_list **a, t_list **b);
+void	sa(t_list **lst);
+void	ra(t_list **lst);
+void 	rra(t_list **lst);
+void	pb(t_list **a, t_list **b);
+void	pa(t_list **a, t_list **b);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+t_list	*is_min(t_list **lst);
+
+void	five_sort(t_list **a, t_list **b);
+void	four_sort(t_list **a, t_list **b);
+void	three_sort(t_list **a, t_list **b);
+
+
 
 #endif

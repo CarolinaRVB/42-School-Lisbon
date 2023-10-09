@@ -5,35 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/04 13:58:05 by crebelo-          #+#    #+#              #
-#    Updated: 2023/05/04 13:58:05 by crebelo-         ###   ########.fr        #
+#    Created: 2023/10/02 08:54:59 by crebelo-          #+#    #+#              #
+#    Updated: 2023/10/02 08:54:59 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
+NAME = pushswap.a
 CFLAGS = -Wall -Wextra -Werror
-
-SRC = 	ft_printf.c \
-		ft_putchar_fd.c \
-		ft_putnbr_fd.c \
-		ft_putptr_hex.c \
-		ft_putnbr_hex.c \
-		ft_putstr_fd.c \
-		ft_putunbr.c \
-		ft_strlen.c
-
+SRC = check_validations.c \
+	  init_args.c \
+	  moves_list.c \
+	  push_swap.c \
+	  sort_list.c \
+	  utils_args.c \
+	  utils_list.c \
+	  big_sort.c
 OBJ = $(SRC:.c=.o)
 
+#program's source file
+PROGRAM_SRC = push_swap.c
+
+#name of the executable
+PROGRAM_NAME = push_swap
+
 $(NAME): $(OBJ)
-		ar -rc $(NAME) $(OBJ)
+	ar -rc $(NAME) $(OBJ)
 
-all: $(NAME)
+all: $(NAME) $(PROGRAM_NAME)
 
-clean: 
-		rm -f $(OBJ)
+$(PROGRAM_NAME): $(PROGRAM_SRC)
+	gcc $(CFLAGS) -o $(PROGRAM_NAME) $(PROGRAM_SRC) $(NAME)
 
-fclean: clean 
-		rm -f $(NAME)
+clean:
+	rm -f $(OBJ)
 
-re: clean all
+fclean: clean
+	rm -f $(NAME) $(PROGRAM_NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

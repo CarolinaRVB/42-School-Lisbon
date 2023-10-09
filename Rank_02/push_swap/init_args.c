@@ -49,12 +49,32 @@ void	free_list(t_list **stack)
 	free(stack);
 }
 
-void	init_args(t_list **stack, char **av, int ac)
+void	ft_add_node(t_list **lst, char *str, int index)
 {
 	t_list  *node;
+	
+	node = malloc(sizeof(t_list));
+	if (node)
+	{
+		node->content = ft_atoll(str);
+		node->index = index;
+		node->next = NULL;
+		ft_lstadd_back(lst, node);
+	}
+	else
+	{
+		free_list(lst);
+		error_exit();
+	}
+}
+
+void	init_args(t_list **stack, char **av, int ac)
+{
 	int		i;
+	int		j;
 
 	i = 1;
+	j = 0;
 	if (ac == 2)
 	{
 		ac = ft_strlen(av);
@@ -62,18 +82,8 @@ void	init_args(t_list **stack, char **av, int ac)
 	}
 	while (i < ac)
 	{
-		node = malloc(sizeof(t_list));
-		if (node)
-		{
-			node->content = ft_atoll(av[i]);
-			node->next = NULL;
-			ft_lstadd_back(stack, node);
-		}
-		else
-		{
-			free_list(stack);
-			error_exit();
-		}
+		ft_add_node(stack, av[i], j);
 		i++;
+		j++;
 	}
 }

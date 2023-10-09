@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hex.c                                    :+:      :+:    :+:   */
+/*   big_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 10:00:53 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/05/04 10:00:53 by crebelo-         ###   ########.fr       */
+/*   Created: 2023/10/03 18:19:00 by crebelo-          #+#    #+#             */
+/*   Updated: 2023/10/03 18:19:00 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-void	ft_putnbr_hex(unsigned int n, char *base, size_t *len)
+void	big_sort(t_list **a, t_list **b)
 {
-	if (n == 0)
+	// int cost_b;
+
+	// cost_b = b->index;
+	// if (b->index > len/2)
+	// 	cost_b = cost_value(b, b->index);
+	while (ft_lstlast(*a)->index > 4)
 	{
-		ft_putchar_fd('0', 1, len);
-		return ;
+		pb(a, b);
+		reset_index(a);
+		write(1, "pb\n", 3);
 	}
-	while (n >= 16)
-	{
-		ft_putnbr_hex(n / 16, base, len);
-		n %= 16;
-	}
-	ft_putchar_fd((base[n]), 1, len);
 }

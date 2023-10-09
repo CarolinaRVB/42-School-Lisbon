@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr.c                                       :+:      :+:    :+:   */
+/*   utils_big.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 09:20:43 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/05/04 09:20:43 by crebelo-         ###   ########.fr       */
+/*   Created: 2023/10/04 15:01:26 by crebelo-          #+#    #+#             */
+/*   Updated: 2023/10/04 15:01:26 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-void	ft_putunbr(unsigned int n, size_t *len)
+int	cost_value(t_list *lst, int index)
 {
-	if (n > 9)
-		ft_putnbr_fd((n / 10), 1, len);
-	n = n % 10 + '0';
-	write(1, &n, 1);
-	(*len)++;
+	int len;
+	int cost;
+
+	len = ft_lstlast(lst)->index + 1;
+	cost = len - index;
+	return (cost);
 }
