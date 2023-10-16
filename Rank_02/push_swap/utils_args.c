@@ -14,7 +14,7 @@
 
 int	is_digit(char *av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (av[0] == '-')
@@ -24,7 +24,7 @@ int	is_digit(char *av)
 		if (av[i] >= '0' && av[i] <= '9')
 		{
 			i++;
-		}	
+		}
 		else
 			return (1);
 	}
@@ -50,7 +50,6 @@ long int	ft_atoll(char *str)
 	}
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 		res = res * 10 + (str[i++] - '0');
-	
 	return (res * sign);
 }
 
@@ -63,11 +62,14 @@ int	count_words(char *str)
 	word = 0;
 	while (str[i] != '\0')
 	{
-		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
+		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n'
+				|| str[i] == '\t'))
 			i++;
-		if (str[i] != '\0' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+		if (str[i] != '\0' && str[i] != ' ' && str[i] != '\n'
+			&& str[i] != '\t')
 			word++;
-		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\n'
+			&& str[i] != '\t')
 			i++;
 	}
 	return (word);
@@ -75,10 +77,10 @@ int	count_words(char *str)
 
 char	*add_word(char *str, int start, int i)
 {
-	int 	j;
+	int		j;
 	char	*word;
 	int		n;
-	
+
 	j = i - start;
 	n = 0;
 	word = (char *)malloc(sizeof(char *) * j + 1);
@@ -96,29 +98,29 @@ char	*add_word(char *str, int start, int i)
 
 char	**ft_split(char *str)
 {
-	int 	nwords;
+	int		nwords;
 	int		i;
 	int		j;
-	int 	start;
-	char 	**ar;
+	int		start;
+	char	**ar;
 
 	nwords = count_words(str);
 	i = 0;
 	j = 0;
-	ar = malloc(sizeof(char *) * nwords + 1);
+	ar = malloc(sizeof(char *) * (nwords + 1));
 	if (!ar)
 		return (NULL);
-	while (str[i] != '\0' && j < nwords)
+	while (j++ < nwords)
 	{
-		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'))
+		while ((str[i] != '\0' && str[i] == ' ' )|| str[i] == '\n'
+			|| str[i] == '\t')
 			i++;
 		start = i;
-		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\n'
+			&& str[i] != '\t')
 			i++;
-		i--;
-		ar[j++] = add_word(str, start, i);
-		i++;		
+		ar[j] = add_word(str, start, i - 1);
 	}
-	ar[j] = NULL;
+	ar[nwords] = NULL;
 	return (ar);
 }

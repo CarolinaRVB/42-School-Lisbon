@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:24:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/09/26 19:34:57 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:26:00 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ int	valid_av(char **av, int size)
 	i = 1;
 	while (i < size)
 	{
-		
 		if (is_digit(av[i]) != 0)
-		{
-			printf("av");
 			return (1);
-		}	
 		i++;
 	}
 	return (0);
@@ -46,15 +42,9 @@ int	valid_int(char **av, int size)
 	{
 		n = ft_atoll(av[i]);
 		if (n > 2147483647)
-		{
-			printf("int");
 			return (1);
-		}	
 		if (n < -2147483648)
-		{
-			printf("int");
 			return (1);
-		}	
 		i++;
 	}
 	return (0);
@@ -64,18 +54,18 @@ int	check_dup(char *n1, char *n2)
 {
 	int	i;
 
-    i = 0;
+	i = 0;
 	while (n1[i] != '\0' && n2[i] != '\0')
 	{
-        if (n1[i] == n2[i])
-            i++;
-        else
-            return 0;
-    } 
-    if (n1[i] == '\0' && n2[i] == '\0')
-        return 1;
-    else
-        return 0;
+		if (n1[i] == n2[i])
+			i++;
+		else
+			return (0);
+	}
+	if (n1[i] == '\0' && n2[i] == '\0')
+		return (1);
+	else
+		return (0);
 }
 
 int	no_dup(char **av, int size, int n)
@@ -98,10 +88,7 @@ int	no_dup(char **av, int size, int n)
 		while (i < j)
 		{
 			if (check_dup(av[i], av[j]) != 0)
-			{
-				printf("dup");
 				return (1);
-			}	
 			i++;
 		}
 		j++;

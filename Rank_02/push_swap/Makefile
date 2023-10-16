@@ -14,12 +14,14 @@ NAME = pushswap.a
 CFLAGS = -Wall -Wextra -Werror
 SRC = check_validations.c \
 	  init_args.c \
-	  moves_list.c \
+	  moves_list_a.c \
+	  moves_list_b.c \
 	  push_swap.c \
 	  sort_list.c \
 	  utils_args.c \
 	  utils_list.c \
-	  big_sort.c
+	  big_sort.c \
+	  utils_big.c
 OBJ = $(SRC:.c=.o)
 
 #program's source file

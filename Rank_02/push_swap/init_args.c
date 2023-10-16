@@ -40,24 +40,25 @@ void	free_list(t_list **stack)
 	t_list	*tmp;
 
 	node = *stack;
-	while(node)
+	while (node)
 	{
 		tmp = node;
 		node = node->next;
 		free(tmp);
 	}
-	free(stack);
 }
 
 void	ft_add_node(t_list **lst, char *str, int index)
 {
-	t_list  *node;
-	
+	t_list	*node;
+
 	node = malloc(sizeof(t_list));
 	if (node)
 	{
 		node->content = ft_atoll(str);
 		node->index = index;
+		node->cost = 0;
+		node->target = NULL;
 		node->next = NULL;
 		ft_lstadd_back(lst, node);
 	}

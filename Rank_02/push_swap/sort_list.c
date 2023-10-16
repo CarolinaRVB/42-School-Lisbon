@@ -26,7 +26,7 @@ void	five_sort(t_list **a, t_list **b)
 		ra(a);
 		ra(a);
 	}
-	else if (min_index == 3)	
+	else if (min_index == 3)
 	{
 		rra(a);
 		rra(a);
@@ -35,7 +35,7 @@ void	five_sort(t_list **a, t_list **b)
 		rra(a);
 	pb(a, b);
 	write(1, "pb\n", 3);
-	reset_index(a);
+	reset_lst(a);
 }
 
 void	four_sort(t_list **a, t_list **b)
@@ -45,7 +45,6 @@ void	four_sort(t_list **a, t_list **b)
 
 	min = is_min(a);
 	min_index = min->index;
-
 	if (min_index == 1)
 		sa(a);
 	else if (min_index == 2)
@@ -57,7 +56,7 @@ void	four_sort(t_list **a, t_list **b)
 		rra(a);
 	pb(a, b);
 	write(1, "pb\n", 3);
-	reset_index(a);
+	reset_lst(a);
 }
 
 void	three_sort(t_list **a, t_list **b)
@@ -73,10 +72,10 @@ void	three_sort(t_list **a, t_list **b)
 		rra(a);
 	pb(a, b);
 	write(1, "pb\n", 3);
-	reset_index(a);
+	reset_lst(a);
 }
 
-void	small_sort(t_list **a, t_list **b)
+void	small_sort(t_list **a, t_list **b, int size)
 {
 	if (ft_lstlast(*a)->index == 4)
 		five_sort(a, b);
@@ -86,15 +85,28 @@ void	small_sort(t_list **a, t_list **b)
 		three_sort(a, b);
 	if ((*a)->content > (*a)->next->content)
 		sa(a);
-	while (*b != NULL)
+	while (size - 4 >= 0)
+	{
 		pa(a, b);
+		size--;
+	}
 }
 
 void	sort_list(t_list **a, t_list **b, int size)
 {
 	if (size <= 6)
-		small_sort(a, b);
+		small_sort(a, b, size);
 	else
+	{
+		while (ft_lstlast(*a)->index > 4)
+		{
+			pb(a, b);
+			reset_lst(a);
+			write(1, "pb\n", 3);
+		}
+		small_sort(a, b, 6);
+		reset_lst(b);
 		big_sort(a, b);
-	// reset_index(a);
+	}	
+	sort_final(a);
 }

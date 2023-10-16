@@ -17,7 +17,7 @@ int	is_sorted(t_list **stack)
 	t_list	*lst;
 
 	lst = *stack;
-	while(lst->next != NULL)
+	while (lst->next != NULL)
 	{
 		if (lst->content > lst->next->content)
 			return (1);
@@ -30,7 +30,7 @@ int	is_sorted(t_list **stack)
 int	list_size(t_list **stack)
 {
 	t_list	*lst;
-	int	len;
+	int		len;
 
 	lst = *stack;
 	len = 0;
@@ -48,16 +48,18 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	*lst = new;
 }
 
-void	reset_index(t_list **stack)
+void	reset_lst(t_list **stack)
 {
 	t_list	*lst_ptr;
-	int	i;
+	int		i;
 
 	i = 0;
 	lst_ptr = *stack;
 	while ((*stack) != NULL)
 	{
 		(*stack)->index = i;
+		(*stack)->target = NULL;
+		(*stack)->cost = -1;
 		(*stack) = (*stack)->next;
 		i++;
 	}
