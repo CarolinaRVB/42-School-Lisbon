@@ -39,7 +39,6 @@ void	ra(t_list **lst)
 	last->next = lst_ptr;
 	lst_ptr->next = NULL;
 	*lst = tmp;
-	write(1, "ra\n", 3);
 }
 
 void	rra(t_list **lst)
@@ -54,7 +53,6 @@ void	rra(t_list **lst)
 	last->next = *lst;
 	before_last->next = NULL;
 	*lst = last;
-	write(1, "rra\n", 4);
 }
 
 void	pa(t_list **a, t_list **b)

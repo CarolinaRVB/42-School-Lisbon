@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = pushswap.a
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRC = check_validations.c \
 	  init_args.c \
 	  moves_list_a.c \
@@ -21,13 +21,14 @@ SRC = check_validations.c \
 	  utils_args.c \
 	  utils_list.c \
 	  big_sort.c \
-	  utils_big.c
+	  utils_big_1.c \
+	  utils_big_2.c \
+	  utils_big_3.c
+
 OBJ = $(SRC:.c=.o)
 
-#program's source file
 PROGRAM_SRC = push_swap.c
 
-#name of the executable
 PROGRAM_NAME = push_swap
 
 $(NAME): $(OBJ)

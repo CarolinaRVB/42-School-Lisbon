@@ -24,7 +24,6 @@ void	rb(t_list **lst)
 	last->next = lst_ptr;
 	lst_ptr->next = NULL;
 	*lst = tmp;
-	write(1, "rb\n", 3);
 }
 
 void	rrb(t_list **lst)
@@ -39,7 +38,6 @@ void	rrb(t_list **lst)
 	last->next = *lst;
 	before_last->next = NULL;
 	*lst = last;
-	write(1, "rrb\n", 4);
 }
 
 void	pb(t_list **a, t_list **b)
@@ -50,4 +48,18 @@ void	pb(t_list **a, t_list **b)
 	*a = (*a)->next;
 	ft_lstadd_front(b, lst_ptr);
 	reset_lst(b);
+}
+
+void	rrr(t_list **a, t_list **b)
+{
+	rra(a);
+	rrb(b);
+	write(1, "rrr\n", 4);
+}
+
+void	rr(t_list **a, t_list **b)
+{
+	ra(a);
+	rb(b);
+	write(1, "rr\n", 3);
 }

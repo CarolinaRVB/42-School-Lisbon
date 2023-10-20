@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <string.h>
 
 int	ft_strlen(char **str)
 {

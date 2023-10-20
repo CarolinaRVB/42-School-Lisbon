@@ -15,73 +15,38 @@
 void	get_target_cost(t_list **a, t_list **b)
 {
 	int		cost_target;
-	t_list	*tmp;
+	t_list	*tmp; 
 
 	tmp = *b;
 	while (tmp != NULL)
 	{
 		tmp->target = find_target(*a, tmp);
-		if (tmp->target == NULL)
-		{
-			tmp->cost = INT_MAX;
-			tmp->target = *a;
-		}	
-		else
-			tmp->cost = tmp->index;
+		tmp->cost = tmp->index;
 		cost_target = tmp->target->index;
-		if (tmp->index > (ft_lstlast(*b)->index + 1) / 2
-			&& tmp->cost != INT_MAX)
-			tmp->cost = cost_value(tmp, tmp->index);
+		if (tmp->index > (ft_lstlast(*b)->index + 1) / 2)
+			tmp->cost = ft_lstlast(*b)->index + 1 - tmp->index;
 		if (tmp->target->index > (ft_lstlast(*a)->index + 1) / 2)
-			cost_target = cost_value(*a, tmp->target->index);
+			cost_target = ft_lstlast(*a)->index + 1 - tmp->target->index;
 		tmp->cost = tmp->cost + cost_target;
 		tmp = tmp->next;
 	}
 }
 
-void	move_top_b(t_list **b, t_list *min)
+void	move_top(t_list **a, t_list **b, t_list *min, t_list *target)
 {
-	int	last;
+	int	last_a; 
+	int	last_b;
 
-	last = ft_lstlast(*b)->index + 1;
-	if (min->index > last / 2)
-	{
-		while (last - min->index > 0)
-		{
-			rrb(b);
-			min->index = min->index + 1;
-		}
-	}
+	last_a = ft_lstlast(*a)->index + 1;
+	last_b = ft_lstlast(*b)->index + 1;
+	if (target->index > last_a / 2 && min->index > last_b / 2)
+		move_top_rrr(a, b, min, target);
+	else if (target->index < last_a / 2 && min->index < last_b / 2)
+		move_top_rr(a, b, min, target);
 	else
 	{
-		while (min->index > 0)
-		{
-			rb(b);
-			min->index = min->index - 1;
-		}
-	}
-}
-
-void	move_top_a(t_list **a, t_list *target)
-{
-	int	last;
-
-	last = ft_lstlast(*a)->index + 1;
-	if (target->index > last / 2)
-	{
-		while (last - target->index > 0)
-		{
-			rra(a);
-			target->index = target->index + 1;
-		}
-	}
-	else
-	{
-		while (target->index > 0)
-		{
-			ra(a);
-			target->index = target->index - 1;
-		}
+		move_top_a(a, target);
+		move_top_b(b, min);
 	}
 }
 
@@ -103,13 +68,7 @@ void	big_sort(t_list **a, t_list **b)
 	{
 		get_target_cost(a, b);
 		min = get_min(*b);
-		if (min->cost == INT_MAX)
-		{
-			min = get_max(*b);
-			min->target = get_max(*a)->next;
-		}
-		move_top_a(a, min->target);
-		move_top_b(b, min);
+		move_top(a, b, min, min->target);
 		pa(a, b);
 		reset_lst(b);
 		reset_lst(a);

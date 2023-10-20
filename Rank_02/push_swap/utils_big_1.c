@@ -56,6 +56,9 @@ t_list	*get_min(t_list *b)
 	{
 		if (tmp1->cost < min->cost)
 			min = tmp1;
+		if (tmp1->cost == min->cost)
+			if (tmp1->content > min->content)
+				min = tmp1;
 		tmp1 = tmp1->next;
 	}
 	return (min);

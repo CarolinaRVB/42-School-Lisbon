@@ -112,7 +112,7 @@ char	**ft_split(char *str)
 		return (NULL);
 	while (j++ < nwords)
 	{
-		while ((str[i] != '\0' && str[i] == ' ' )|| str[i] == '\n'
+		while ((str[i] != '\0' && str[i] == ' ' ) || str[i] == '\n'
 			|| str[i] == '\t')
 			i++;
 		start = i;
