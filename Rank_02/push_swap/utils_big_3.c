@@ -56,3 +56,52 @@ void	top_rr_a(t_list **a, t_list **b, int m_dis, int t_dis)
 		t_dis--;
 	}
 }
+
+t_list	*find_next_big(t_list *a, t_list *max)
+{
+	t_list	*target;
+	t_list	*tmpa;
+
+	tmpa = a;
+	target = NULL;
+	while (tmpa && tmpa->next != NULL)
+	{
+		if (target == NULL)
+			target = tmpa;
+		if (tmpa && tmpa->next != NULL && (tmpa->next->content < max->content)
+			&& (tmpa->next->content > target->content))
+			target = tmpa->next;
+		tmpa = tmpa->next;
+	}
+	return (target);
+}
+
+t_list		*find_median(t_list **a)
+{
+	int	j;
+	t_list	*max;
+	t_list	*next_big;
+
+	max = get_max(*a);
+	j = ft_lstlast(*a)->index / 2;
+	while (j > 0)
+	{
+		next_big = find_next_big(*a, max);
+		max = next_big;
+		j--;
+	}
+	return (next_big);
+}
+
+
+// t_list	*get_median(t_list **a, t_list *max)
+// {
+// 	t_list	*min;
+// 	int		mean;
+
+// 	min = get_min_val(*a);
+// 	mean = ft_lstlast(*a)->index / 2;
+
+
+
+// }

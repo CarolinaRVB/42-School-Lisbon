@@ -85,4 +85,7 @@ void		top_rr_a(t_list **a, t_list **b, int m_dis, int t_dis);
 void		move_top_a(t_list **a, t_list *target);
 void		move_top_b(t_list **b, t_list *target);
 
+t_list		*find_median(t_list **a);
+t_list	*find_next_big(t_list *a, t_list *max);
+
 #endif
