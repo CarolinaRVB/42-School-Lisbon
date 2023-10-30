@@ -32,7 +32,6 @@ int			is_digit(char *av);
 int			valid_av(char **av, int size);
 int			valid_int(char **av, int size);
 int			no_dup(char **av, int size, int n);
-int			check_dup(char *n1, char *n2);
 int			error_exit(void);
 long int	ft_atoll(char *str);
 int			count_words(char *str);
@@ -64,7 +63,8 @@ t_list		*is_min(t_list **lst);
 
 void		five_sort(t_list **a, t_list **b, t_list *min);
 void		four_sort(t_list **a, t_list **b);
-void		three_sort(t_list **a, t_list **b);
+// void		three_sort(t_list **a, t_list **b);
+void		three_sort(t_list **a);
 
 t_list		*find_target(t_list *a, t_list *b);
 int			cost_value(t_list *lst, int index);

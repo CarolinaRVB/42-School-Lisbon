@@ -16,7 +16,7 @@ int	ft_strlen(char **str)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (str[i] != NULL)
 		i++;
 	return (i);
@@ -33,16 +33,19 @@ int	main(int ac, char *av[])
 	args = av;
 	stack_a = NULL;
 	stack_b = NULL;
+	
 	if (ac < 2 || (ac == 2 && !av[1][0]))
-		return (error_exit());
+		return (0);
 	else if (ac == 2)
-	{
+	{		
 		args = ft_split(av[1]);
+		if (!args[1])
+			return (0);
 		ac = ft_strlen(args);
-	}	
+	}
 	if (valid_av(args, ac) != 0 || valid_int(args, ac) != 0
 		|| no_dup(args, ac, n) != 0)
-		return (error_exit());
+		return (error_exit());	
 	init_args(&stack_a, args, n);
 	if (is_sorted(&stack_a) != 0)
 		sort_list(&stack_a, &stack_b, ac);

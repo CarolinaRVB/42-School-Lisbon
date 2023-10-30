@@ -19,12 +19,12 @@ int	is_digit(char *av)
 	i = 0;
 	if (av[0] == '-')
 		i++;
+	if (av[i] == '\0')
+		return (1);
 	while (av[i] != '\0')
 	{
 		if (av[i] >= '0' && av[i] <= '9')
-		{
 			i++;
-		}
 		else
 			return (1);
 	}
@@ -121,6 +121,6 @@ char	**ft_split(char *str)
 			i++;
 		ar[j] = add_word(str, start, i - 1);
 	}
-	ar[nwords] = NULL;
+	ar[nwords + 1] = NULL;
 	return (ar);
 }
