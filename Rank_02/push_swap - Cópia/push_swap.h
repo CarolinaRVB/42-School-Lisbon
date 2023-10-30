@@ -62,9 +62,9 @@ void		pa(t_list **a, t_list **b);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 t_list		*is_min(t_list **lst);
 
-void		five_sort(t_list **a, t_list **b, t_list *min);
+void		five_sort(t_list **a, t_list **b);
 void		four_sort(t_list **a, t_list **b);
-void		three_sort(t_list **a, t_list **b);
+void		three_sort(t_list **a);
 
 t_list		*find_target(t_list *a, t_list *b);
 int			cost_value(t_list *lst, int index);
@@ -88,6 +88,5 @@ void		move_top_b(t_list **b, t_list *target);
 t_list		*find_median(t_list **a);
 t_list	*find_next_big(t_list *a, t_list *max);
 int	max_cost(int a, int b);
-int	calc_cost(t_list *tmp, int lasta, int lastb);
 
 #endif
