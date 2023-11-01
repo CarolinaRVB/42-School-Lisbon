@@ -64,10 +64,3 @@ void	pb(t_list **a, t_list **b)
 	ft_lstadd_front(b, lst_ptr);
 	reset_lst(b);
 }
-
-void	rrr(t_list **a, t_list **b)
-{
-	rra(a);
-	rrb(b);
-	write(1, "rrr\n", 4);
-}

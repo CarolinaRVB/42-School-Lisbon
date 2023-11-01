@@ -28,9 +28,13 @@ typedef struct s_list
 	struct s_list	*target;
 }					t_list;
 
+void		free_argv(char **ar);
+int			check_arguments(char **args, int ac, int n);
+void		start_sort(t_list **stack_a, t_list **stack_b, int ac, int n);
+
 int			is_digit(char *av);
-int			valid_av(char **av, int size);
-int			valid_int(char **av, int size);
+int			valid_av(char **av, int size, int n);
+int			valid_int(char **av, int size, int n);
 int			no_dup(char **av, int size, int n);
 int			error_exit(void);
 long int	ft_atoll(char *str);
@@ -47,7 +51,7 @@ int			list_size(t_list **stack);
 void		ft_add_node(t_list **lst, char *str, int index);
 void		reset_lst(t_list **stack);
 int			is_sorted(t_list **stack);
-void		sort_list(t_list **a, t_list **b, int size);
+void		sort_list(t_list **a, t_list **b, int size, int reals);
 void		small_sort(t_list **a, t_list **b, int size);
 void		get_target_cost(t_list **a, t_list **b);
 void		big_sort(t_list **a, t_list **b);
@@ -58,12 +62,12 @@ void		rrb(t_list **lst);
 void		rra(t_list **lst);
 void		pb(t_list **a, t_list **b);
 void		pa(t_list **a, t_list **b);
+void	ss(t_list **a, t_list **b);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 t_list		*is_min(t_list **lst);
 
 void		five_sort(t_list **a, t_list **b, t_list *min);
 void		four_sort(t_list **a, t_list **b);
-// void		three_sort(t_list **a, t_list **b);
 void		three_sort(t_list **a);
 
 t_list		*find_target(t_list *a, t_list *b);
@@ -86,8 +90,8 @@ void		move_top_a(t_list **a, t_list *target);
 void		move_top_b(t_list **b, t_list *target);
 
 t_list		*find_median(t_list **a);
-t_list	*find_next_big(t_list *a, t_list *max);
-int	max_cost(int a, int b);
-int	calc_cost(t_list *tmp, int lasta, int lastb);
+t_list		*find_next_big(t_list *a, t_list *max);
+int			max_cost(int a, int b);
+int			calc_cost(t_list *tmp, int lasta, int lastb);
 
 #endif

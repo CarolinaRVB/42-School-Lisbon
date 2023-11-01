@@ -16,18 +16,21 @@ SRC = check_validations.c \
 	  init_args.c \
 	  moves_list_a.c \
 	  moves_list_b.c \
-	  push_swap.c \
+	  moves_list_both.c \
+	  main.c \
 	  sort_list.c \
+	  small_sort.c \
+	  big_sort.c \
+	  utils_main.c \
 	  utils_args.c \
 	  utils_list.c \
-	  big_sort.c \
 	  utils_big_1.c \
 	  utils_big_2.c \
 	  utils_big_3.c
 
 OBJ = $(SRC:.c=.o)
 
-PROGRAM_SRC = push_swap.c
+PROGRAM_SRC = main.c
 
 PROGRAM_NAME = push_swap
 

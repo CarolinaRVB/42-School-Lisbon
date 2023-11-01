@@ -61,9 +61,3 @@ void	pa(t_list **a, t_list **b)
 	write(1, "pa\n", 3);
 }
 
-void	rr(t_list **a, t_list **b)
-{
-	ra(a);
-	rb(b);
-	write(1, "rr\n", 3);
-}

@@ -106,7 +106,7 @@ char	**ft_split(char *str)
 
 	nwords = count_words(str);
 	i = 0;
-	j = 0;
+	j = -1;
 	ar = malloc(sizeof(char *) * (nwords + 1));
 	if (!ar)
 		return (NULL);
