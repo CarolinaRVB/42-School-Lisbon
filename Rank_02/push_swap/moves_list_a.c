@@ -60,4 +60,3 @@ void	pa(t_list **a, t_list **b)
 	pb(b, a);
 	write(1, "pa\n", 3);
 }
-

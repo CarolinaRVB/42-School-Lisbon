@@ -102,10 +102,10 @@ void	three_sort_extra(t_list **a)
 		write(1, "rra\n", 4);
 	}
 	else
-	{	
+	{
 		rra(a);
 		write(1, "rra\n", 4);
-	}	
+	}
 }
 
 void	small_sort(t_list **a, t_list **b, int size)

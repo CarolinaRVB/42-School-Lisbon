@@ -27,10 +27,10 @@ int	calc_cost(t_list *tmp, int lasta, int lastb)
 
 void	get_target_cost(t_list **a, t_list **b)
 {
-	int	lasta;
-	int	lastb;
-	int	m_dis;
-	int	t_dis;
+	int		lasta;
+	int		lastb;
+	int		m_dis;
+	int		t_dis;
 	t_list	*tmp; 
 
 	tmp = *b;
@@ -40,7 +40,7 @@ void	get_target_cost(t_list **a, t_list **b)
 		lastb = ft_lstlast(*b)->index + 1;
 		tmp->target = find_target(*a, tmp);
 		tmp->cost = tmp->index;
-		m_dis =  lastb - tmp->index;
+		m_dis = lastb - tmp->index;
 		t_dis = lasta - tmp->target->index;
 		if ((tmp->index > lastb / 2) && (tmp->target->index > lasta / 2))
 			tmp->cost = max_cost(m_dis, t_dis);
@@ -51,26 +51,6 @@ void	get_target_cost(t_list **a, t_list **b)
 		tmp = tmp->next;
 	}
 }
-
-// void	get_target_cost(t_list **a, t_list **b)
-// {
-// 	int		cost_target;
-// 	t_list	*tmp; 
-
-// 	tmp = *b;
-// 	while (tmp != NULL)
-// 	{
-// 		tmp->target = find_target(*a, tmp);
-// 		tmp->cost = tmp->index;
-// 		cost_target = tmp->target->index;
-// 		if (tmp->index > (ft_lstlast(*b)->index + 1) / 2)
-// 			tmp->cost = ft_lstlast(*b)->index + 1 - tmp->index;
-// 		if (tmp->target->index > (ft_lstlast(*a)->index + 1) / 2)
-// 			cost_target = ft_lstlast(*a)->index + 1 - tmp->target->index;
-// 		tmp->cost = tmp->cost + cost_target;
-// 		tmp = tmp->next;
-// 	}
-// }
 
 void	move_top(t_list **a, t_list **b, t_list *min, t_list *target)
 {
@@ -104,7 +84,7 @@ void	big_sort(t_list **a, t_list **b)
 	t_list	*min;
 
 	min = *b;
-	while (*b!= NULL)
+	while (*b != NULL)
 	{
 		get_target_cost(a, b);
 		min = get_min(*b);

@@ -78,7 +78,7 @@ void	init_args(t_list **stack, char **av, int ac)
 	j = 0;
 	if (ac == 2)
 	{
-		ac = ft_strlen(av);
+		ac = count_ar(av);
 		i = 0;
 	}
 	while (i < ac)

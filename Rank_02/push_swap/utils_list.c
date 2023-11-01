@@ -81,7 +81,7 @@ t_list	*is_min(t_list **lst)
 		{
 			min = (*lst)->content;
 			min_ptr = *lst;
-		}	
+		}
 		*lst = (*lst)->next;
 	}
 	*lst = tmp;
