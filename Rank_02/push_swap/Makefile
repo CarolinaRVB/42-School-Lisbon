@@ -21,7 +21,8 @@ SRC = check_validations.c \
 	  sort_list.c \
 	  small_sort.c \
 	  big_sort.c \
-	  utils_main.c \
+	  utils_main_1.c \
+	  utils_main_2.c \
 	  utils_args_1.c \
 	  utils_args_2.c \
 	  utils_list.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:24:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/01 20:21:23 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:46:51 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ int	error_exit(void)
 	return (1);
 }
 
-int	valid_av(char **av, int size, int n)
+int	valid_av(char **av, int size)
 {
 	int	i;
 
-	i = 1;
-	if (n == 2)
-		i = 0;
-	if (i == 1 && size == 1)
-		size = 2;
+	i = 0;
 	while (i < size)
 	{
 		if (is_digit(av[i]) != 0)
@@ -36,16 +32,12 @@ int	valid_av(char **av, int size, int n)
 	return (0);
 }
 
-int	valid_int(char **av, int size, int n)
+int	valid_int(char **av, int size)
 {
 	int			i;
 	long int	nb;
 
-	i = 1;
-	if (n == 2)
-		i = 0;
-	if (i == 1 && size == 1)
-		size = 2;
+	i = 0;
 	while (i < size)
 	{
 		nb = ft_atoll(av[i]);
@@ -69,25 +61,16 @@ int	check_dup(char **s, int i, int j)
 	return (0);
 }
 
-int	no_dup(char **av, int size, int n)
+int	no_dup(char **av, int size)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	j = 2;
-	if (n == 2)
-	{
-		i = 0;
-		j = 1;
-	}
-	if (i == 1 && size == 1)
-		size = 2;
+	i = 0;
+	j = 1;
 	while (i < size && j < size)
 	{
-		i = 1;
-		if (n == 2)
-			i = 0;
+		i = 0;
 		if (check_dup(av, i, j) != 0)
 			return (1);
 		j++;

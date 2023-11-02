@@ -31,7 +31,7 @@ void	get_target_cost(t_list **a, t_list **b)
 	int		lastb;
 	int		m_dis;
 	int		t_dis;
-	t_list	*tmp; 
+	t_list	*tmp;
 
 	tmp = *b;
 	while (tmp != NULL)
@@ -54,7 +54,7 @@ void	get_target_cost(t_list **a, t_list **b)
 
 void	move_top(t_list **a, t_list **b, t_list *min, t_list *target)
 {
-	int	last_a; 
+	int	last_a;
 	int	last_b;
 
 	last_a = ft_lstlast(*a)->index + 1;

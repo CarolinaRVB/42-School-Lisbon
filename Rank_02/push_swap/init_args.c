@@ -74,13 +74,8 @@ void	init_args(t_list **stack, char **av, int ac)
 	int		i;
 	int		j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	if (ac == 2)
-	{
-		ac = count_ar(av);
-		i = 0;
-	}
 	while (i < ac)
 	{
 		ft_add_node(stack, av[i], j);

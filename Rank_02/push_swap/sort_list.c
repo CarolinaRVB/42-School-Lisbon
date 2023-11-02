@@ -12,13 +12,11 @@
 
 #include "push_swap.h"
 
-void	sort_list(t_list **a, t_list **b, int size, int reals)
+void	sort_list(t_list **a, t_list **b, int size)
 {
 	int	max;
 
 	max = get_max(*a)->content;
-	if (reals != 2)
-		size = size - 1;
 	if (size < 6)
 		small_sort(a, b, size);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_args_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:45:06 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/01 20:47:30 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:47:02 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,4 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	else
 		ft_bzero (p, nmemb * size);
 	return (p);
-}
-
-int	count_ar(char **str)
-{
-	int	i;
-
-	i = 1;
-	while (str[i] != NULL)
-		i++;
-	return (i);
 }

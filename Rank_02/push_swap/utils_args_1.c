@@ -41,25 +41,26 @@ int	count_words(char const *s, char c)
 	return (word);
 }
 
-static char	*word_alloc(char const *s, int start, int end)
+char	*word_alloc(char const *s, int start, int end)
 {
 	char	*word;
 	int		i;
 
 	i = 0;
-	word = (char *)ft_calloc((end - start) + 1, 1);
+	word = (char *)ft_calloc((end - start + 1), 1);
 	if (word)
 	{
 		while (start < end)
 		{
 			word[i++] = s[start++];
 		}
+		word[i] = '\0';
 		return (word);
 	}
 	return (0);
 }
 
-static char	**create_split(char const *s, char **split, int nwords, char c)
+char	**create_split(char const *s, char **split, int nwords, char c)
 {
 	int		i;
 	int		j;
@@ -80,6 +81,7 @@ static char	**create_split(char const *s, char **split, int nwords, char c)
 		start = i++;
 		j++;
 	}
+	split[j] = NULL;
 	return (split);
 }
 
