@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = pushswap.a
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fPIE -g
 SRC = check_validations.c \
 	  init_args.c \
 	  moves_list_a.c \
@@ -42,7 +42,7 @@ $(NAME): $(OBJ)
 all: $(NAME) $(PROGRAM_NAME)
 
 $(PROGRAM_NAME): $(PROGRAM_SRC)
-	gcc $(CFLAGS) -o $(PROGRAM_NAME) $(PROGRAM_SRC) $(NAME)
+	cc $(CFLAGS) -o $(PROGRAM_NAME) $(PROGRAM_SRC) $(NAME)
 
 clean:
 	rm -f $(OBJ)

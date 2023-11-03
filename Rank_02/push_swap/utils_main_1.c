@@ -28,7 +28,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	sjoin = (char *)ft_calloc((s1len + s2len + 1), 1);
 	if (sjoin)
-	{	
+	{
 		while (s1[i] != '\0')
 		{
 			sjoin[i] = s1[i];
@@ -75,6 +75,8 @@ char	**join_args_split(int ac, char *av[])
 
 	str = join_args(ac, av);
 	arg = ft_split(str, ' ');
+	if (!arg)
+		return (NULL);
 	if (ac > 2)
 		free(str);
 	if (arg[0] == NULL)

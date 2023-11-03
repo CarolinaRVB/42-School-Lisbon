@@ -51,9 +51,7 @@ char	*word_alloc(char const *s, int start, int end)
 	if (word)
 	{
 		while (start < end)
-		{
 			word[i++] = s[start++];
-		}
 		word[i] = '\0';
 		return (word);
 	}
@@ -91,6 +89,8 @@ char	**ft_split(char const *s, char c)
 	int		nwords;
 
 	nwords = count_words(s, c);
+	if (nwords == 0)
+		return (NULL);
 	split = (char **)ft_calloc((nwords + 1), (sizeof(char *)));
 	if (split)
 	{
