@@ -27,7 +27,10 @@ int	main(int ac, char *av[])
 		return (0);
 	ac = count_ar(args);
 	if (check_arguments(args, ac) != 0)
-		return (1);
+	{
+		free_argv(args);
+		return (1);	
+	}
 	init_args(&stack_a, args, ac);
 	free_argv(args);
 	start_sort(&stack_a, &stack_b, ac);
