@@ -40,10 +40,10 @@ int	valid_int(char **av, int size)
 	i = 0;
 	while (i < size)
 	{
-		nb = ft_atoll(av[i]);
-		if (nb > 2147483647)
+		nb = ft_atol(av[i]);
+		if (nb > INT_MAX)
 			return (1);
-		if (nb < -2147483648)
+		if (nb < INT_MIN)
 			return (1);
 		i++;
 	}
@@ -54,7 +54,7 @@ int	check_dup(char **s, int i, int j)
 {
 	while (i < j)
 	{
-		if (ft_atoll(s[i]) == ft_atoll(s[j]))
+		if (ft_atoi(s[i]) == ft_atoi(s[j]))
 			return (1);
 		i++;
 	}

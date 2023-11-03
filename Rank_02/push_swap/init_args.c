@@ -55,7 +55,7 @@ void	ft_add_node(t_list **lst, char *str, int index)
 	node = malloc(sizeof(t_list));
 	if (node)
 	{
-		node->content = ft_atoll(str);
+		node->content = ft_atoi(str);
 		node->index = index;
 		node->cost = 0;
 		node->target = NULL;

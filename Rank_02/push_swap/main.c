@@ -29,7 +29,7 @@ int	main(int ac, char *av[])
 	if (check_arguments(args, ac) != 0)
 	{
 		free_argv(args);
-		return (1);	
+		return (1);
 	}
 	init_args(&stack_a, args, ac);
 	free_argv(args);

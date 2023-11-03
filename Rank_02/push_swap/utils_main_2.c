@@ -31,28 +31,6 @@ int	is_digit(char *av)
 	return (0);
 }
 
-long int	ft_atoll(char *str)
-{
-	long int	i;
-	long int	res;
-	long int	sign;
-
-	i = 0;
-	res = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
-		i++;
-	while (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + (str[i++] - '0');
-	return (res * sign);
-}
-
 void	free_argv(char **ar)
 {
 	int	i;

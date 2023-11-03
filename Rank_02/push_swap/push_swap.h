@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -39,7 +40,11 @@ void		free_argv(char **ar);
 int			check_arguments(char **args, int ac);
 void		start_sort(t_list **stack_a, t_list **stack_b, int ac);
 int			is_digit(char *av);
-long int	ft_atoll(char *str);
+// long int	ft_atoll(char *str);
+
+long		ft_atol(const char *nptr);
+long		ft_result_atol(const char *nptr, int sign, int i);
+int			ft_atoi(const char *nptr);
 
 //              Acessory functions for arguments
 // functions from check validations
