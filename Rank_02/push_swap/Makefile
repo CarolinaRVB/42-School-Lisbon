@@ -10,14 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pushswap.a
-CFLAGS = -Wall -Wextra -Werror -fPIE -g
-SRC = check_validations.c \
+NAME = push_swap
+
+CFLAGS = -Wall -Wextra -Werror -g
+
+SRC = main.c \
+	  check_validations.c \
 	  init_args.c \
 	  moves_list_a.c \
 	  moves_list_b.c \
 	  moves_list_both.c \
-	  main.c \
 	  sort_list.c \
 	  small_sort.c \
 	  big_sort.c \
@@ -32,23 +34,19 @@ SRC = check_validations.c \
 
 OBJ = $(SRC:.c=.o)
 
-PROGRAM_SRC = main.c
-
-PROGRAM_NAME = push_swap
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rc $(NAME) $(OBJ)
+	gcc $(CFLAGS) -o $(NAME) $(OBJ)
 
-all: $(NAME) $(PROGRAM_NAME)
-
-$(PROGRAM_NAME): $(PROGRAM_SRC)
-	cc $(CFLAGS) -o $(PROGRAM_NAME) $(PROGRAM_SRC) $(NAME)
+%.o: %.c
+	gcc $(CFLAGS) -c $<
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME) $(PROGRAM_NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

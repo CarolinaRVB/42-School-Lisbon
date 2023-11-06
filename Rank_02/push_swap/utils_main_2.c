@@ -50,10 +50,7 @@ int	check_arguments(char **args, int ac)
 		|| no_dup(args, ac) != 0)
 		return (error_exit());
 	if (ac == 1)
-	{
-		free_argv(args);
 		return (1);
-	}
 	return (0);
 }
 
