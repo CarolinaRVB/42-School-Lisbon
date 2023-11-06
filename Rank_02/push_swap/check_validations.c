@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:24:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/02 12:46:51 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:26:40 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	valid_int(char **av, int size)
 	i = 0;
 	while (i < size)
 	{
+		if (ft_strlen(av[i]) > 11)
+			return (1);
 		nb = ft_atol(av[i]);
 		if (nb > INT_MAX)
 			return (1);

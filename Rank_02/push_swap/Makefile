@@ -34,13 +34,12 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+CC = cc
 
 $(NAME): $(OBJ)
-	gcc $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
-	gcc $(CFLAGS) -c $<
+all: $(NAME)
 
 clean:
 	rm -f $(OBJ)
@@ -48,6 +47,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: clean all
 
 .PHONY: all clean fclean re

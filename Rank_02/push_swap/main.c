@@ -24,7 +24,7 @@ int	main(int ac, char *av[])
 		return (0);
 	args = join_args_split(ac, av);
 	if (!args)
-		return (0);
+		return (1);
 	ac = count_ar(args);
 	if (check_arguments(args, ac) != 0)
 	{

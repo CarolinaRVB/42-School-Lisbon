@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_args_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:45:06 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/02 15:47:02 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:26:55 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,44 +39,26 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (p);
 }
 
-long	ft_result_atol(const char *nptr, int sign, int i)
+long int	ft_atol(char *str)
 {
-	long	result;
-
-	result = 0;
-	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		if ((result > LONG_MAX / 10) || (result == LONG_MAX / 10 && (nptr[i]
-					- '0') > (LONG_MAX % 10)))
-		{
-			if (sign == -1)
-				return (LONG_MIN);
-			else
-				return (LONG_MAX);
-		}
-		result = (result * 10) + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
-}
-
-long	ft_atol(const char *nptr)
-{
-	long	i;
-	long	sign;
+	long int	i;
+	long int	res;
+	long int	sign;
 
 	i = 0;
+	res = 0;
 	sign = 1;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
 		i++;
-	if (nptr[i] == '-')
+	while (str[i] == '-' || str[i] == '+')
 	{
-		sign = -1;
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	else if (nptr[i] == '+')
-		i++;
-	return (ft_result_atol(nptr, sign, i));
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + (str[i++] - '0');
+	return (res * sign);
 }
 
 int	ft_atoi(const char *nptr)

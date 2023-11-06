@@ -75,6 +75,8 @@ char	**join_args_split(int ac, char *av[])
 
 	str = join_args(ac, av);
 	arg = ft_split(str, ' ');
+	if (!arg && ft_strlen(str))
+		error_exit();
 	if (!arg)
 		return (NULL);
 	if (ac > 2)
