@@ -17,7 +17,7 @@ int	is_digit(char *av)
 	int	i;
 
 	i = 0;
-	if (av[0] == '-')
+	if (av[0] == '-' || av[0] == '+')
 		i++;
 	if (av[i] == '\0')
 		return (1);
