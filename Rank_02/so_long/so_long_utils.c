@@ -10,20 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int check_ext(char *av)
+#include "so_long.h"
+
+void	ft_clearmap(char **map)
 {
-	int	i;
-	int	dot;
-	
-	i = 0;
-	dot = 0;
-	while (av[i] != '\0')
-	{
-		if (av[i] == '.')
-		{
-			dot++;
-			
-		}
-		
-	}
+	if (map)
+		free(map);
+}
+
+int error_exit(char *str, t_game *game)
+{
+	ft_printf("%s\n", str);
+	ft_clearmap(game->map->outline);
+	return (1);
 }

@@ -42,4 +42,7 @@ typedef struct s_game
 	// t_img	*imgs;
 }	t_game;
 
+int error_exit(char *str, t_game *game);
+void	clear_map(t_map *map);
+
 #endif

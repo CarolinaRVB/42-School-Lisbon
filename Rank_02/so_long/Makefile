@@ -12,7 +12,8 @@
 
 NAME = so_long
 
-SRCS = main.c
+SRCS = main.c \
+		so_long_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

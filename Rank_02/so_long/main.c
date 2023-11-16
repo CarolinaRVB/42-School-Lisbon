@@ -56,10 +56,7 @@ int	build_map(t_game *game, char *av)
 		if (game->map->width == 0)
 			game->map->width = ft_strlen_nl(line);
 		else if (game->map->width != (int)ft_strlen_nl(line))
-		{
-			ft_printf("Error: invalid map size");   //call function to printf and free memmory
-			return (1);
-		}
+			return (error_exit("Error: invalid map size", game));
 		game->map->outline[i] = ft_strdup(line);
 		i++;
 	}
@@ -132,41 +129,114 @@ void	populate_map(t_game *game)
 
 // int	check_walls;
 // int	check_players;
-
-int	check_map(t_game *game)
+// if (strcmpchrs(game->map->outline, "01PEC\n") != 0)
+// 		return(error_exit("Error: wrong map players", game));
+		// printf("%c\n", str[i][j]);
+		// printf("%c\n", chrs[k]);
+int	strcmpchrs(char **str, char *chrs)
 {
 	int	i;
 	int	j;
-	int	P;
-	int	E;
-	int	C;
+	int	k;
 
 	i = 0;
 	j = 0;
-	P = 0;
-	E = 0;
-	C = 0;
-	if (check_map_outline(game) != 0)
-		error_exit("Error: wrong map structure\n", game);
-	while (game->map->outline[i][j] != '\n')
+	k = 0;
+	while (str[i])
 	{
-		j = 0;
-		while (game->map->outline[i][j] != '\n')
+	
+		while (str[i][j] != '\0')
 		{
-			if (game->map->outline[i][j] == 'P')
-				P++;
-			if (game->map->outline[i][j] == 'E')
-				E++;
-			if (game->map->outline[i][j] == 'C')
-				C++;
+			k = 0;
+			printf("%c\n", str[i][j]);
+			printf("%c\n", chrs[k]);
+			while (str[i][j] != chrs[k])
+				k++;
+			if (chrs[k] == '\0')
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	if (P != 1 && E != 1)
-		error_exit("Error: wrong number of players\n", game);
-	if (C < 1)
-		error_exit("Error: no colectibles\n", game);
+	return (0);
+}
+
+// int	strcmpchrs(char **str, char *chrs)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	k;
+
+// 	i = 0;
+// 	j = 0;
+// 	k = 0;
+// 	while (str[i][j] != '\0')
+// 	{
+// 		j = 0;
+// 		printf("%c\n", str[i][j]);
+// 		printf("%c\n", chrs[k]);
+// 		while (str[i][j] != '\0')
+// 		{
+// 			k = 0;
+// 			while (str[i][j] != chrs[k])
+// 				k++;
+// 			if (chrs[k] == '\0')
+// 				return (1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
+// {
+//     int i = 0;
+//     while (str[i] != NULL) {
+//         if (strcmp(str[i], chrs) == 0) {
+//             return 0; // Strings match
+//         }
+//         i++;
+//     }
+//     return 1; // Strings don't match
+// }
+
+
+int	check_map(t_game *game)
+{
+	// int	i;
+	// int	j;
+	// int	P;
+	// int	E;
+	// int	C;
+
+	// i = 0;
+	// j = 0;
+	// P = 0;
+	// E = 0;
+	// C = 0;
+	// if (check_map_outline(game) != 0)
+	// 	error_exit("Error: wrong map structure\n", game);
+	if (strcmpchrs(game->map->outline, "01PEC\n") != 0)
+		return(error_exit("Error: wrong map players", game));
+	// while (game->map->outline[i][j] != '\n')
+	// {
+	// 	j = 0;
+	// 	while (game->map->outline[i][j] != '\n')
+	// 	{
+	// 		if (game->map->outline[i][j] == 'P')
+	// 			P++;
+	// 		if (game->map->outline[i][j] == 'E')
+	// 			E++;
+	// 		if (game->map->outline[i][j] == 'C')
+	// 			C++;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// if (P != 1 && E != 1)
+	// 	error_exit("Error: wrong number of players\n", game);
+	// if (C < 1)
+	// 	error_exit("Error: no colectibles\n", game);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -180,11 +250,11 @@ int	main(int ac, char **av)
 		printf("Error: wrong file type\n");
 		return (1);	
 	}
-	if (build_map(&game, av[1]) != 0);
+	if (build_map(&game, av[1]) != 0)
 		return (1);
-	if (check_map(av[1]) == 1)
+	if (check_map(&game) == 1)
 		return (1);
-	
+
 	// for (int i = 0; i < 5; ++i)
 	// 	printf("%s", game.map->outline[i]);
 	game.mlx_ptr = mlx_init();
