@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/13 12:48:40 by crebelo-          #+#    #+#              #
+#    Updated: 2023/11/15 13:50:52 by crebelo-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
@@ -42,11 +54,16 @@ SRC = \
 	number/ft_atoi.c \
 	number/ft_putunbr.c \
 	\
-	printf/ft_putchar_fd.c \
-	printf/ft_putendl_fd.c \
-	printf/ft_putnbr_fd.c \
-	printf/ft_putstr_fd.c \
+	print/ft_putchar_fd.c \
+	print/ft_putendl_fd.c \
+	print/ft_putnbr_fd.c \
+	print/ft_putstr_fd.c \
+	print/ft_printf_putchar_fd.c \
+	print/ft_printf_putnbr_fd.c \
+	print/ft_printf_putstr_fd.c \
 	\
+	string/ft_checkfileext.c \
+	string/ft_countchr.c \
 	string/ft_split.c \
 	string/ft_strchr.c \
 	string/ft_strdup.c \
@@ -55,6 +72,7 @@ SRC = \
 	string/ft_strlcat.c \
 	string/ft_strlcpy.c \
 	string/ft_strlen.c \
+	string/ft_strlen_nl.c \
 	string/ft_strmapi.c \
 	string/ft_strncmp.c \
 	string/ft_strnstr.c \
@@ -65,13 +83,12 @@ SRC = \
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) -c $(SRC) -I./
 	ar -rc $(NAME) $(OBJ)
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) 
 
 fclean: clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:28:31 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/13 14:00:24 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/15 13:51:52 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memset(void *s, int c, size_t n);
 char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
+size_t		ft_strlen_nl(const char *s);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
@@ -89,9 +90,13 @@ void		ft_putunbr(unsigned int n, size_t *len);
 char		*get_next_line(int fd);
 void		ft_read(char **stash, int fd);
 void		ft_createline(char **line, char *stash);
+char		*ft_gnl_strjoin(char *s1, char *s2);
 void		ft_clean(char **stash);
 int			ft_findnl(char *stash);
 void		createstash(char **stash, char *buff);
 
+// New functions
+int			ft_countchr(char *str, char ch);
+int			ft_checkfileext(char *filename, char *extension);
 
 #endif
