@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:47:08 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/22 13:18:23 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:06:44 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,24 +121,28 @@ int	keypress(int key, t_game *game)
 {
 	if (key == KEY_ESC)
 		close_game(game, "Closing game");
-	if (key == ARROW_RIGHT)
+	if (key == ARROW_RIGHT || key == KEY_D)
 	{
-		ft_printf("%s\n", "Clicking right movement");
+		// ft_printf("%s\n", "Clicking right movement");
+		ft_printf("%d\n", game->move_count++);
 		move_right(game, &(game->player_x), &(game->player_x_pre));
 	}
-	if (key == ARROW_LEFT)
+	if (key == ARROW_LEFT || key == KEY_A)
 	{
-		ft_printf("%s\n", "Clicking left movement");
+		// ft_printf("%s\n", "Clicking left movement");
+		ft_printf("%d\n", game->move_count++);
 		move_left(game, &(game->player_x), &(game->player_x_pre));
 	}
-	if (key == ARROW_UP)
+	if (key == ARROW_UP || key == KEY_W)
 	{
-		ft_printf("%s\n", "Clicking up movement");
+		// ft_printf("%s\n", "Clicking up movement");
+		ft_printf("%d\n", game->move_count++);
 		move_up(game, &(game->player_y), &(game->player_y_pre));
 	}
-	if (key == ARROW_DOWN)
+	if (key == ARROW_DOWN || key == KEY_S)
 	{
-		ft_printf("%s\n", "Clicking down movement");
+		// ft_printf("%s\n", "Clicking down movement");
+		ft_printf("%d\n", game->move_count++);
 		move_down(game, &(game->player_y), &(game->player_y_pre));
 	}
 	return (0);

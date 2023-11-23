@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:38:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/22 13:41:55 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:02:11 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define ARROW_LEFT 65361
 # define ARROW_UP 65362
 # define ARROW_DOWN 65364
+# define KEY_D 100
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
 #define MLX_ERROR 1
 
 typedef struct s_map
@@ -50,7 +54,8 @@ typedef struct s_game
 	int		exit;
 	int		exit_x;
 	int		exit_y;
-	int		collectible;	
+	int		collectible;
+	int		move_count;
 	t_map	*map;
 	// t_img	*imgs;
 }	t_game;

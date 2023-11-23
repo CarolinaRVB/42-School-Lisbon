@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_build.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: crebelo- <crebelo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:50:05 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/20 09:54:49 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:04:10 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	build_map(t_game *game, char *av)
 		return(error_exit("Error: error opening file"));
 	i = 0;
 	game->map = malloc(sizeof(t_map));
+	game->move_count = 0;
 	if (!game->map)
 		return(error_exit("Error: error allocating"));
 	game->map->width = 0;
