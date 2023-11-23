@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -31,6 +31,7 @@ char	*get_next_line(int fd)
 		free(line);
 		line = NULL;
 	}
+	
 	return (line);
 }
 
@@ -87,34 +88,34 @@ void	ft_createline(char **line, char *stash)
 
 void	ft_clean(char **stash)
 {
-	size_t		i;
-	size_t		j;
-	char		*newstash;
+	size_t	new_line;
+	char	*temp;
+	size_t	len;
+	int		i;
 
-	i = 0;
-	j = 0;
-	while ((*stash)[i])
+	new_line = 0;
+	while ((*stash)[new_line] != '\n' && (*stash)[new_line] != '\0')
+		++new_line;
+	if ((*stash)[new_line] == '\n')
+		new_line++;
+	len = ft_strlen(*stash) - new_line;
+	temp = malloc(sizeof(char) * (len + 1));
+	if (!temp || len == 0)
 	{
-		if ((*stash)[i] == '\n')
-		{
-			i++;
-			break ;
-		}
-		i++;
-	}
-	newstash = ft_calloc(((ft_strlen(*stash) - i) + 1), sizeof(char));
-	if (*stash == NULL || newstash == NULL)
+		free(temp);
+		free(*stash);
+		*stash = NULL;
 		return ;
-	while ((*stash)[i])
-		newstash[j++] = (*stash)[i++];
+	}
+	i = 0;
+	while ((*stash)[new_line] != '\0')
+		temp[i++] = (*stash)[new_line++];
+	temp[i] = '\0';
 	free(*stash);
-	*stash = newstash;
+	*stash = temp;
 }
 
-// #include <fcntl.h>
-// #include <unistd.h>
-// #include <stdlib.h>
-// #include <stdio.h>
+
 // int main(void) {
 // 	int fd = open("example.txt", O_RDONLY);
 // 	if (fd == -1) {

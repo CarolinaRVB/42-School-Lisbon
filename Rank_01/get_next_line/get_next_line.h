@@ -13,7 +13,10 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+
+# endif
 
 # include <stddef.h>
 # include <unistd.h>
@@ -31,4 +34,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlen(const char *s);
 void	createstash(char **stash, char *buff);
 void	ft_bzero(void *s, size_t n);
+
+size_t	ft_strlen_nl(const char *s);
+
 #endif

@@ -1,26 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   so_long_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:45:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/15 13:07:51 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/20 09:53:08 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_clearmap(char **map)
-{
-	if (map)
-		free(map);
-}
-
-int error_exit(char *str, t_game *game)
+int error_exit(char *str)
 {
 	ft_printf("%s\n", str);
-	ft_clearmap(game->map->outline);
+	return (1);
+}
+
+void free_map(t_map *map) 
+{
+	int	i;
+
+	i = 0;
+	if (map)
+	{
+		if (map->outline)
+		{
+			while (i < map->height)
+			{
+				free(map->outline[i]);
+				i++;
+			}
+			free(map->outline);
+			map->outline = NULL;
+		}
+		free(map);
+	}
+}
+
+int free_game(t_game *game, char *str)
+{
+	if (str)
+		printf("%s\n", str);
+	if (game)
+	{
+		if (game->map)
+		{
+			free_map(game->map);
+			game->map = NULL;
+		}
+	}
 	return (1);
 }

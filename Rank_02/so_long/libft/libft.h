@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:28:31 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/15 13:51:52 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:32:59 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_nl(const char *s);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
-size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
@@ -94,6 +93,12 @@ char		*ft_gnl_strjoin(char *s1, char *s2);
 void		ft_clean(char **stash);
 int			ft_findnl(char *stash);
 void		createstash(char **stash, char *buff);
+
+size_t	ft_strlen_gnl(const char *s);
+void	ft_strcpy_gnl(char *dest, char *src);
+void	ft_strcat_gnl(char *dest, char *src);
+char	*ft_strjoin_gnl(char *dest, char *src);
+int	ft_check_newline(char *s);
 
 // New functions
 int			ft_countchr(char *str, char ch);

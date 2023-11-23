@@ -6,20 +6,24 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:38:32 by crebelo-          #+#    #+#              #
-#    Updated: 2023/11/13 11:34:09 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/11/20 13:28:41 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main.c \
-		so_long_utils.c
+SRCS = so_long_utils_1.c \
+	   so_long_utils_2.c \
+	   main.c \
+	   so_long_build.c \
+	   so_long_check.c \
+	   so_long_init.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 MLXFLAGS = -Lminilibx_linux -lmlx -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
 
