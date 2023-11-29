@@ -6,70 +6,93 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:06:20 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/20 20:16:02 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:57:26 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void display_image(t_game *game, char *image_path, int x, int y)
+
+void	init_player(t_game *game)
 {
-	int	img_height;
-	int	img_width;
-	void *img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, image_path, &img_width, &img_height);
-	if (x >= 0 && x < game->map->width * PIXEL_SIZE &&
-        y >= 0 && y < game->map->height * PIXEL_SIZE)
-	{
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img_ptr, x, y);
-    }
+	int		h;
+	int		w;
+
+	h = PIXEL_SIZE;
+	w = PIXEL_SIZE;
+	game->p1 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER1, &w, &h);
+	game->p2 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER2, &w, &h);
+	game->p3 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER3, &w, &h);
+	game->p1l = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER1L, &w, &h);
+	game->p2l = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER2L, &w, &h);
+	game->p3l = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER3L, &w, &h);
+	game->p5 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER5, &w, &h);
+	game->p6 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER6, &w, &h);
+	game->p7 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER7, &w, &h);
 }
 
-
-void	populate_map(t_game *game)
+void	init_imgs_files(t_game *game)
 {
-	int	x;
-	int y;
+	int		h;
+	int		w;
 
-	y = 0;
-	while (y < game->map->height)
+	h = PIXEL_SIZE;
+	w = PIXEL_SIZE;
+	init_player(game);
+	game->p = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER, &w, &h);
+	game->e = mlx_xpm_file_to_image(game->mlx_ptr, EXIT, &w, &h);
+	game->c = mlx_xpm_file_to_image(game->mlx_ptr, COLLECT, &w, &h);
+	game->x = mlx_xpm_file_to_image(game->mlx_ptr, ENEMY, &w, &h);
+	game->t = mlx_xpm_file_to_image(game->mlx_ptr, TILES, &w, &h);
+	game->b = mlx_xpm_file_to_image(game->mlx_ptr, BACKGROUND, &w, &h);
+}
+
+void	populate_map(t_game *game, void	*img)
+{
+	while (game->map->y < game->map->height)
 	{
-		x = 0;
-		while (x < game->map->width)
+		game->map->x = 0;
+		while (game->map->x < game->map->width)
 		{
-			if (game->map->outline[y][x] == 'P')
-				display_image(game, "char.xpm", x * PIXEL_SIZE, y * PIXEL_SIZE);
-			if (game->map->outline[y][x] == 'E')
-				display_image(game, "exit.xpm", x * PIXEL_SIZE, y * PIXEL_SIZE);
-			if (game->map->outline[y][x] == 'C')
-				display_image(game, "col.xpm", x * PIXEL_SIZE, y * PIXEL_SIZE);
-			if (game->map->outline[y][x] == '0')
-				display_image(game, "Background.xpm", x * PIXEL_SIZE, y * PIXEL_SIZE);
-			if (game->map->outline[y][x] == '1')
-				display_image(game, "Tiles.xpm", x * PIXEL_SIZE, y * PIXEL_SIZE);
-			x++;
+			if (game->map->outline[game->map->y][game->map->x] == 'P')
+				img = game->p;
+			if (game->map->outline[game->map->y][game->map->x] == 'E')
+				img = game->e;
+			if (game->map->outline[game->map->y][game->map->x] == 'C')
+				img = game->c;
+			if (game->map->outline[game->map->y][game->map->x] == 'X')
+				img = game->x;
+			if (game->map->outline[game->map->y][game->map->x] == '0')
+				img = game->b;
+			if (game->map->outline[game->map->y][game->map->x] == '1')
+				img = game->t;
+			if (img)
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img,
+					game->map->x * PIXEL_SIZE, game->map->y * PIXEL_SIZE);
+			game->map->x = game->map->x + 1;
 		}
-		y++;
+		game->map->y = game->map->y + 1;
 	}
 }
 
 int	initiate_game(t_game *game)
 {
-	game->mlx_ptr = NULL;
+	void	*img;
+
+	img = NULL;
 	game->mlx_ptr = mlx_init();
-	if (game->mlx_ptr == NULL)
-		return (1);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map->width * PIXEL_SIZE, game->map->height * PIXEL_SIZE, TITLE);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map->width * PIXEL_SIZE,
+			game->map->height * PIXEL_SIZE, TITLE);
 	if (game->win_ptr == NULL)
 	{
 		free(game->win_ptr);
 		free_game(game, "Error: error building window");
 		return (1);
 	}
-	populate_map(game);
-	mlx_loop_hook(game->mlx_ptr, loop_hook, game);
+	init_imgs_files(game);
+	populate_map(game, img);
+	display_count(game, 0);
 	mlx_hook(game->win_ptr, 2, 1L << 0, keypress, game);
-	mlx_hook(game->win_ptr, 17, 0, destroy, game);
-	
+	mlx_hook(game->win_ptr, 17, 0, destroy_x, game);
 	mlx_loop(game->mlx_ptr);
-
 	return (0);
 }

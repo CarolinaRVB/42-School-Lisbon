@@ -40,28 +40,6 @@ char	*ft_gnl_strjoin(char *s1, char *s2)
 	return (NULL);
 }
 
-// void	*ft_calloc(size_t nmemb, size_t size)
-// {
-// 	void			*p;
-// 	size_t			total_size;
-// 	size_t			i;
-// 	unsigned char	*ptr;
-
-// 	total_size = nmemb * size;
-// 	p = malloc(total_size);
-// 	ptr = (unsigned char *)p;
-// 	if (p)
-// 	{
-// 		i = 0;
-// 		while (i < total_size)
-// 		{
-// 			ptr[i] = 0;
-// 			i++;
-// 		}	
-// 	}	
-// 	return (p);
-// }
-
 int	ft_findnl(char *stash)
 {
 	ssize_t		i;

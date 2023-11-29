@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:28:31 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/18 12:32:59 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:29:33 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void		ft_clean(char **stash);
 int			ft_findnl(char *stash);
 void		createstash(char **stash, char *buff);
 
-size_t	ft_strlen_gnl(const char *s);
-void	ft_strcpy_gnl(char *dest, char *src);
-void	ft_strcat_gnl(char *dest, char *src);
-char	*ft_strjoin_gnl(char *dest, char *src);
-int	ft_check_newline(char *s);
+size_t		ft_strlen_gnl(const char *s);
+void		ft_strcpy_gnl(char *dest, char *src);
+void		ft_strcat_gnl(char *dest, char *src);
+char		*ft_strjoin_gnl(char *dest, char *src);
+int			ft_check_newline(char *s);
 
 // New functions
 int			ft_countchr(char *str, char ch);

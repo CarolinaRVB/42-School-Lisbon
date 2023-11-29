@@ -6,19 +6,37 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:45:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/20 09:53:08 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:23:21 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int error_exit(char *str)
+void	close_game(t_game *game, char *msg)
 {
-	ft_printf("%s\n", str);
-	return (1);
+	free_game(game, msg);
+	mlx_destroy_image(game->mlx_ptr, game->p);
+	mlx_destroy_image(game->mlx_ptr, game->p1);
+	mlx_destroy_image(game->mlx_ptr, game->p2);
+	mlx_destroy_image(game->mlx_ptr, game->p3);
+	mlx_destroy_image(game->mlx_ptr, game->p1l);
+	mlx_destroy_image(game->mlx_ptr, game->p2l);
+	mlx_destroy_image(game->mlx_ptr, game->p3l);
+	mlx_destroy_image(game->mlx_ptr, game->p5);
+	mlx_destroy_image(game->mlx_ptr, game->p6);
+	mlx_destroy_image(game->mlx_ptr, game->p7);
+	mlx_destroy_image(game->mlx_ptr, game->e);
+	mlx_destroy_image(game->mlx_ptr, game->x);
+	mlx_destroy_image(game->mlx_ptr, game->c);
+	mlx_destroy_image(game->mlx_ptr, game->t);
+	mlx_destroy_image(game->mlx_ptr, game->b);
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	free(game->mlx_ptr);
+	exit(0);
 }
 
-void free_map(t_map *map) 
+void	free_map(t_map *map)
 {
 	int	i;
 
@@ -39,7 +57,7 @@ void free_map(t_map *map)
 	}
 }
 
-int free_game(t_game *game, char *str)
+int	free_game(t_game *game, char *str)
 {
 	if (str)
 		printf("%s\n", str);
