@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:35:26 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 11:28:15 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:03:51 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (error_exit("Error: wrong number of arguments"));
-	if (ft_checkfileext(av[1], ".ber") != 0)
-		return (error_exit("Error: wrong file type"));
+	if (open(av[1], O_RDONLY) == -1 || ft_checkfileext(av[1], ".ber") != 0)
+		return (error_exit("Error: wrong file"));
 	if (build_map(&game, av[1]) != 0)
 		return (1);
 	if (check_map(&game) != 0)

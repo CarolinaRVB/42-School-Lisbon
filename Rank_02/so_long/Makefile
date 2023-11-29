@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:38:32 by crebelo-          #+#    #+#              #
-#    Updated: 2023/11/29 17:21:14 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/11/29 18:01:23 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 
 MLXFLAGS = -Lminilibx_linux -lmlx -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
 

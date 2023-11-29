@@ -68,13 +68,16 @@ void	move_animation_down(t_game *game, int x, int y, int y_pre)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->p, x, y);
 }
 
-void display_count(t_game *game, int count)
+void	display_count(t_game *game, int count)
 {
-	int mean;
-	char	*str =  ft_itoa(count);
-	
+	int		mean;
+	char	*str;
+
+	str = ft_itoa(count);
 	mean = game->map->width / 2;
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->t, mean * PIXEL_SIZE, 0 * PIXEL_SIZE);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, (mean * PIXEL_SIZE) + 20, (1 * PIXEL_SIZE) - 5, 0xFFFFFF, str);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->t, mean * PIXEL_SIZE, 0 * PIXEL_SIZE);
+	mlx_string_put(game->mlx_ptr, game->win_ptr,
+		(mean * PIXEL_SIZE) + 20, (1 * PIXEL_SIZE) - 5, 0xFFFFFF, str);
 	free(str);
 }
