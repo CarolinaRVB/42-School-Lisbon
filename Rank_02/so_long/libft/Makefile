@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 12:48:40 by crebelo-          #+#    #+#              #
-#    Updated: 2023/11/17 18:19:42 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/11/30 18:52:54 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC = \
 	print/ft_printf_putstr_fd.c \
 	\
 	string/ft_checkfileext.c \
+	string/ft_checkiffileopens.c \
 	string/ft_countchr.c \
 	string/ft_split.c \
 	string/ft_strchr.c \

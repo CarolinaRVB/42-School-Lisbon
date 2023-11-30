@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:50:05 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:36 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:55:51 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	init_imgs(t_game *game)
 int	init_struct(t_game *game, int fd, char *av)
 {
 	if (!fd)
-		return (error_exit("Error: error opening file"));
+		return (error_exit("Error\nIssue while opening file"));
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
-		return (error_exit("Error: error allocating"));
+		return (error_exit("Error\nIssue while allocating"));
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
 	init_imgs(game);
@@ -65,10 +65,12 @@ int	init_struct(t_game *game, int fd, char *av)
 	game->map->width = 0;
 	game->map->x = 0;
 	game->map->y = 0;
+	game->ey = 0;
+	game->ex = 0;
 	game->map->height = get_map_height(av);
 	game->map->outline = ft_calloc(game->map->height, sizeof(char *));
 	if (!game->map->outline)
-		return (free_game(game, "Error: error building"));
+		return (free_game(game, "Error\nIssue while building"));
 	return (0);
 }
 
@@ -91,7 +93,7 @@ int	build_map(t_game *game, char *av)
 		if (!game->map->outline[i++])
 		{
 			free(line);
-			return (free_game(game, "Error: error building"));
+			return (free_game(game, "Error\nIssue while building"));
 		}
 		free(line);
 	}

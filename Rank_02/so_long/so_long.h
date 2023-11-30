@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:38:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:41 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:05:13 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include <stdio.h>
+# include <time.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include "minilibx_linux/mlx.h"
@@ -83,6 +84,8 @@ typedef struct s_game
 	int		player_x_pre;
 	int		player_y;
 	int		player_y_pre;
+	int		ey;
+	int		ex;
 	int		exit;
 	int		exit_x;
 	int		exit_y;

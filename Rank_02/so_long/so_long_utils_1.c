@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:45:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/29 10:23:21 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:31:55 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	free_map(t_map *map)
 int	free_game(t_game *game, char *str)
 {
 	if (str)
-		printf("%s\n", str);
+		ft_printf("%s\n", str);
 	if (game)
 	{
 		if (game->map)
