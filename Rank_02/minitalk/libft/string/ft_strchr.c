@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 15:35:26 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/06 10:59:04 by crebelo-         ###   ########.fr       */
+/*   Created: 2023/04/17 18:24:21 by crebelo-          #+#    #+#             */
+/*   Updated: 2023/11/13 12:30:09 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+// The strchr() function returns a pointer to the first occurrence
+// of the character c in the string s.
+// If you're dealing with strings, then use strchr() . 
+// If you have a finite-size, non-terminated buffer, then use memchr()
+#include "../libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	t_game	game;
+	int	i;
 
-	if (ac != 2)
-		return (error_exit("Error\nWrong number of arguments"));
-	if (checkiffileopens(av[1], O_RDONLY) != 0
-		|| ft_checkfileext(av[1], ".ber") != 0)
-		return (error_exit("Error\nProblem with file"));
-	if (build_map(&game, av[1]) != 0)
-		return (1);
-	if (check_map(&game) != 0)
-		return (1);
-	if (initiate_game(&game) != 0)
-		return (1);
+	i = 0;
+	while (i <= (int)ft_strlen(s))
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
 	return (0);
 }

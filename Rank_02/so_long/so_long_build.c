@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:50:05 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 18:55:51 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/06 10:58:10 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ void	init_imgs(t_game *game)
 	game->b = NULL;
 }
 
-int	init_struct(t_game *game, int fd, char *av)
+int	init_struct(t_game *game, char *av)
 {
-	if (!fd)
-		return (error_exit("Error\nIssue while opening file"));
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
 		return (error_exit("Error\nIssue while allocating"));
@@ -81,7 +79,7 @@ int	build_map(t_game *game, char *av)
 	int		i;
 
 	fd = open(av, O_RDONLY);
-	if (init_struct(game, fd, av) != 0)
+	if (init_struct(game, av) != 0)
 		return (1);
 	i = 0;
 	while (1)
@@ -93,6 +91,7 @@ int	build_map(t_game *game, char *av)
 		if (!game->map->outline[i++])
 		{
 			free(line);
+			close(fd);
 			return (free_game(game, "Error\nIssue while building"));
 		}
 		free(line);
