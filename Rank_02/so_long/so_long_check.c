@@ -6,37 +6,11 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:51:02 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/06 10:57:26 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:49:16 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	strcmpchrs(char **str, char *chrs, int height)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (str[i][j] != '\0')
-		{
-			k = 0;
-			while (str[i][j] != chrs[k] && chrs[k] != '\0')
-				k++;
-			if (chrs[k] == '\0')
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 int	checkplayersresult(t_game *game)
 {
@@ -46,6 +20,8 @@ int	checkplayersresult(t_game *game)
 		return (free_game(game, "Error\nWrong number of exits"));
 	if (game->collectible < 1)
 		return (free_game(game, "Error\nNo colectibles"));
+	if (game->tile < 1)
+		return (free_game(game, "Error\nNo tiles"));
 	return (0);
 }
 
@@ -66,6 +42,8 @@ int	checknrplayers(t_game *game, int height)
 				game->exit++;
 			if (game->map->outline[game->map->y][game->map->x] == 'C')
 				game->collectible++;
+			if (game->map->outline[game->map->y][game->map->x] == '0')
+				game->tile++;
 			game->map->x = game->map->x + 1;
 		}
 		game->map->y = game->map->y + 1;
@@ -103,12 +81,24 @@ int	mapwalls(t_game *game, int len, int i)
 	return (0);
 }
 
+int	mapsize(t_game *game)
+{
+	if (game->map->height < 3 || game->map->width < 6)
+		return (free_game(game, "Error\nMap size too small for all components"));
+	return (0);
+}
+
 int	check_map(t_game *game)
 {
+	if (!game->map->outline[0])
+		return (free_game(game, "Error\nEmpty map"));
 	game->player = 0;
 	game->exit = 0;
 	game->collectible = 0;
+	game->tile = 0;
 	game->map->width = ft_strlen_nl(game->map->outline[0]);
+	if (mapsize(game) != 0)
+		return (1);
 	if (mapwalls(game, 0, 0) != 0)
 		return (1);
 	if (strcmpchrs(game->map->outline, "01PEC\n", game->map->height) != 0)

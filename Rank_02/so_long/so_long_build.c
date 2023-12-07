@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:50:05 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/06 10:58:10 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:56:14 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	init_struct(t_game *game, char *av)
 	game->ey = 0;
 	game->ex = 0;
 	game->map->height = get_map_height(av);
-	game->map->outline = ft_calloc(game->map->height, sizeof(char *));
+	game->map->outline = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->outline)
 		return (free_game(game, "Error\nIssue while building"));
 	return (0);
@@ -78,9 +78,9 @@ int	build_map(t_game *game, char *av)
 	char	*line;
 	int		i;
 
-	fd = open(av, O_RDONLY);
 	if (init_struct(game, av) != 0)
 		return (1);
+	fd = open(av, O_RDONLY);
 	i = 0;
 	while (1)
 	{

@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:38:32 by crebelo-          #+#    #+#              #
-#    Updated: 2023/11/29 18:01:23 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/12/07 12:37:15 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ SRCS = so_long_utils_1.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 
-MLXFLAGS = -Lminilibx_linux -lmlx -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
+MLXFLAGS = -Lminilibx-linux -lmlx -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz
 
 LIBFT_DIR = libft
 
@@ -40,7 +40,7 @@ SO_LONG_LIB = so_long.a
 all: $(NAME)
 
 $(NAME): $(SO_LONG_LIB) $(OBJS)
-	@make -C minilibx_linux
+	@make -C minilibx-linux
 	$(CC) $(CFLAGS) -I/usr/include main.c $(OBJS) $(LIBFT_A) $(SO_LONG_LIB) $(MLXFLAGS) -o $(NAME) > /dev/null
 
 $(SO_LONG_LIB): $(OBJS)

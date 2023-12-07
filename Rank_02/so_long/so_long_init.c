@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:06:20 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/03 10:28:43 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:50:33 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,9 @@ int	initiate_game(t_game *game)
 			game->map->height * PIXEL_SIZE, TITLE);
 	if (game->win_ptr == NULL)
 	{
-		free(game->win_ptr);
+		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
-		free_game(game, "Error\nIssue building window");
-		return (1);
+		return (free_game(game, "Error\nIssue building window"));
 	}
 	init_imgs_files(game);
 	populate_map(game, img);

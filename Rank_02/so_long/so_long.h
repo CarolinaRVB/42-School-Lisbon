@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:38:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 18:05:13 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:59:42 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <time.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "minilibx_linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -90,42 +90,52 @@ typedef struct s_game
 	int		exit_x;
 	int		exit_y;
 	int		collectible;
+	int		tile;
 	int		move_count;
 	t_map	*map;
 }	t_game;
 
 // so long utils 1
-int		error_exit(char *str);
 void	free_map(t_map *map);
 int		free_game(t_game *game, char *str);
 void	close_game(t_game *game, char *msg);
 
 // so long utils 2
-int		get_map_height(char *av);
+void	move_right(t_game *game, int *x, int *x_pre);
+void	move_left(t_game *game, int *x, int *x_pre);
+void	move_up(t_game *game, int *y, int *y_pre);
+void	move_down(t_game *game, int *y, int *y_pre);
 int		keypress(int key, t_game *game);
-int		destroy_x(t_game *game);
-int		destroy(t_game *game, char *msg);
-int		loop_hook(t_game *game);
-void	display_count(t_game *game, int count);
 
 // so long utils 3
 void	move_animation_right(t_game *game, int x, int x_pre, int y);
 void	move_animation_left(t_game *game, int x, int x_pre, int y);
 void	move_animation_up(t_game *game, int x, int y, int y_pre);
 void	move_animation_down(t_game *game, int x, int y, int y_pre);
+void	display_count(t_game *game, int count);
 
 // so long build
+int		get_map_height(char *av);
+void	init_imgs(t_game *game);
+int		init_struct(t_game *game, char *av);
 int		build_map(t_game *game, char *av);
 
 // so long check
-int		strcmpchrs(char **str, char *chrs, int height);
+int		checkplayersresult(t_game *game);
 int		checknrplayers(t_game *game, int height);
+int		mapwalls(t_game *game, int len, int i);
+int		mapsize(t_game *game);
 int		check_map(t_game *game);
 
-// int		mapwalls(t_game *game);
-int		mapwalls(t_game *game, int len, int i);
+// so long exits
+int		destroy(t_game *game, char *msg);
+int		destroy_x(t_game *game);
+int		error_exit(char *str);
 
 // so long init
-int		initiate_game(t_game *game);
+void	init_player(t_game *game);
+void	init_enemy(t_game *game);
+void	init_imgs_files(t_game *game);
 void	populate_map(t_game *game, void *img);
+int		initiate_game(t_game *game);
 #endif
