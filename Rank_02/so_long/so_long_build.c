@@ -65,6 +65,7 @@ int	init_struct(t_game *game, char *av)
 	game->map->y = 0;
 	game->ey = 0;
 	game->ex = 0;
+	game->vale = 0;
 	game->map->height = get_map_height(av);
 	game->map->outline = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->outline)

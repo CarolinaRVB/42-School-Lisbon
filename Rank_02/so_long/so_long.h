@@ -22,22 +22,22 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define TITLE "Plancton"
-# define BACKGROUND "imgs/Background.xpm"
-# define TILES "imgs/Tiles.xpm"
-# define PLAYER "imgs/P.xpm"
-# define PLAYER1 "imgs/P2.xpm"
-# define PLAYER2 "imgs/P3.xpm"
-# define PLAYER3 "imgs/P4.xpm"
-# define PLAYER1L "imgs/P2L.xpm"
-# define PLAYER2L "imgs/P3L.xpm"
-# define PLAYER3L "imgs/P4L.xpm"
-# define PLAYER5 "imgs/P5.xpm"
-# define PLAYER6 "imgs/P6.xpm"
-# define PLAYER7 "imgs/P8.xpm"
-# define COLLECT "imgs/col.xpm"
-# define EXIT "imgs/exit.xpm"
-# define ENEMY "imgs/En.xpm"
+# define TITLE "so_long"
+# define BACKGROUND "textures/Background.xpm"
+# define TILES "textures/Tiles.xpm"
+# define PLAYER "textures/P.xpm"
+# define PLAYER1 "textures/P2.xpm"
+# define PLAYER2 "textures/P3.xpm"
+# define PLAYER3 "textures/P4.xpm"
+# define PLAYER1L "textures/P2L.xpm"
+# define PLAYER2L "textures/P3L.xpm"
+# define PLAYER3L "textures/P4L.xpm"
+# define PLAYER5 "textures/P5.xpm"
+# define PLAYER6 "textures/P6.xpm"
+# define PLAYER7 "textures/P8.xpm"
+# define COLLECT "textures/col.xpm"
+# define EXIT "textures/exit.xpm"
+# define ENEMY "textures/En.xpm"
 # define TIME 99990
 # define PIXEL_SIZE 55
 # define KEY_ESC 65307
@@ -87,6 +87,7 @@ typedef struct s_game
 	int		ey;
 	int		ex;
 	int		exit;
+	int		vale;
 	int		exit_x;
 	int		exit_y;
 	int		collectible;
