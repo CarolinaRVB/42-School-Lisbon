@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:49:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/15 14:08:16 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:07:02 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	ft_checkfileext(char *filename, char *extension)
 		return (1);
 	sep = extension[0];
 	beginning = ft_strlen(filename) - ft_strlen(extension);
-	if (ft_countchr(filename, sep) > 1)
-		return (1);
 	if (ft_strnstr(&filename[beginning], extension, ft_strlen(extension)) == 0)
 		return (1);
 	return (0);

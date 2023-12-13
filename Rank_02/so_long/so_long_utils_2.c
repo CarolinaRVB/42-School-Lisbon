@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:47:08 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/03 10:29:47 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:06:01 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	move_right(t_game *game, int *x, int *x_pre)
 		*x_pre = *x;
 		*x = next_x;
 		if (game->map->outline[game->player_y][next_x] == 'C')
+		{
 			game->collectible = game->collectible - 1;
+			game->map->outline[game->player_y][next_x] = '0';
+		}
 		move_animation_right(game, *x * PIXEL_SIZE, *x_pre * PIXEL_SIZE,
 			game->player_y * PIXEL_SIZE);
 	}
@@ -47,7 +50,10 @@ void	move_left(t_game *game, int *x, int *x_pre)
 		*x_pre = *x;
 		*x = next_x;
 		if (game->map->outline[game->player_y][next_x] == 'C')
+		{	
 			game->collectible = game->collectible - 1;
+			game->map->outline[game->player_y][next_x] = '0';
+		}
 		move_animation_left(game, *x * PIXEL_SIZE, *x_pre * PIXEL_SIZE,
 			game->player_y * PIXEL_SIZE);
 	}
@@ -69,7 +75,10 @@ void	move_up(t_game *game, int *y, int *y_pre)
 		*y_pre = *y;
 		*y = next_y;
 		if (game->map->outline[next_y][game->player_x] == 'C')
+		{
 			game->collectible = game->collectible - 1;
+			game->map->outline[next_y][game->player_x] = '0';
+		}
 		move_animation_up(game, game->player_x * PIXEL_SIZE,
 			*y * PIXEL_SIZE, *y_pre * PIXEL_SIZE);
 	}
@@ -91,7 +100,10 @@ void	move_down(t_game *game, int *y, int *y_pre)
 		*y_pre = *y;
 		*y = next_y;
 		if (game->map->outline[next_y][game->player_x] == 'C')
+		{	
 			game->collectible = game->collectible - 1;
+			game->map->outline[next_y][game->player_x] = '0';
+		}
 		move_animation_down(game, game->player_x * PIXEL_SIZE,
 			*y * PIXEL_SIZE, *y_pre * PIXEL_SIZE);
 	}

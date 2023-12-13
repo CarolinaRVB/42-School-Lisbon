@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:45:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 11:31:55 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:54:29 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ int	free_game(t_game *game, char *str)
 		}
 	}
 	return (1);
+}
+
+void	free_mapcpy(char **nmap)
+{
+	int	i;
+
+	i = 0;
+	while (nmap[i])
+	{
+		free(nmap[i]);
+		i++;
+	}
+	free(nmap);
 }

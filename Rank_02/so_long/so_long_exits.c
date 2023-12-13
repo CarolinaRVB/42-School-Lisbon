@@ -29,3 +29,43 @@ int	error_exit(char *str)
 	ft_printf("%s\n", str);
 	return (1);
 }
+
+void	floodcheck(t_game *game, int x, int y, char **nmap)
+{
+	if (nmap[x][y] == 'x' || nmap[x][y] == '1')
+		return ;
+	else if (nmap[x][y] == 'C')
+		game->colexit--;
+	else if (nmap[x][y] == 'E')
+	{
+		game->vale = 1;
+		return ;
+	}
+	nmap[x][y] = 'x';
+	floodcheck(game, x + 1, y, nmap);
+	floodcheck(game, x - 1, y, nmap);
+	floodcheck(game, x, y + 1, nmap);
+	floodcheck(game, x, y - 1, nmap);
+}
+
+int	checkmapexit(t_game *game)
+{
+	char	**nmap;
+	int		i;
+	int		l;
+
+	i = 0;
+	l = game->map->height;
+	nmap = ft_calloc(l + 1, sizeof(char *));
+	while (i < l)
+	{
+		nmap[i] = ft_strdup(game->map->outline[i]);
+		i++;
+	}
+	floodcheck(game, game->player_x, game->player_y, nmap);
+	free_mapcpy(nmap);
+	if (game->vale != 0 && game->colexit == 0)
+		return (1);
+	else
+		return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:28:31 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/11/30 18:53:14 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:34:43 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ int			ft_check_newline(char *s);
 int			ft_countchr(char *str, char ch);
 int			ft_checkfileext(char *filename, char *extension);
 int			checkiffileopens(char *file, int flag);
+int			ft_error_exit(char *str);
 
 #endif

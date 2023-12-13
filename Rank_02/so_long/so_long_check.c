@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:51:02 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/07 17:49:16 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:17:04 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,43 +88,6 @@ int	mapsize(t_game *game)
 	return (0);
 }
 
-void	floodcheck(t_game *game, int x, int y, char **nmap)
-{
-	if (nmap[x][y] == 'x' || nmap[x][y] == '1')
-		return ;
-	else if (nmap[x][y] == 'E')
-	{
-		game->vale = 1;
-		return ;
-	}
-	nmap[x][y] = 'x';
-	floodcheck(game, x + 1, y, nmap);
-	floodcheck(game, x - 1, y, nmap);
-	floodcheck(game, x, y + 1, nmap);
-	floodcheck(game, x, y - 1, nmap);
-}
-
-int	checkmapexit(t_game *game)
-{
-	char	**nmap;
-	int		i;
-	int		l;
-
-	i = 0;
-	l = game->map->height;
-	nmap = ft_calloc(l + 1, sizeof(char *));
-	while(i < l)
-	{
-		nmap[i] = ft_strdup(game->map->outline[i]);
-		i++;
-	}
-	floodcheck(game, game->player_x, game->player_y, nmap);
-	if (game->vale != 0 || )
-		return (1);
-	else
-		return (0);
-}
-
 int	check_map(t_game *game)
 {
 	if (!game->map->outline[0])
@@ -132,6 +95,7 @@ int	check_map(t_game *game)
 	game->player = 0;
 	game->exit = 0;
 	game->collectible = 0;
+	game->colexit = 0;
 	game->tile = 0;
 	game->map->width = ft_strlen_nl(game->map->outline[0]);
 	if (mapsize(game) != 0)
@@ -142,8 +106,9 @@ int	check_map(t_game *game)
 		return (free_game(game, "Error\nInvalid map elements"));
 	if (checknrplayers(game, game->map->height) != 0)
 		return (1);
+	game->colexit = game->collectible;
 	if (checkmapexit(game) == 0)
-		return (free_game(game, "Error\nNo path to exit"));
+		return (free_game(game, "Error\nInvalid map path"));
 	game->map->x = 0;
 	game->map->y = 0;
 	return (0);

@@ -12,13 +12,27 @@
 
 NAME = minitalk
 
-SRCS = 
-
-OBJS = $(SRCS:.c=.o)
-
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
+INCLUDE = minitalk.h
+
+SERVER = server.c
+
+SERVER_BONUS = server_bonus.c
+
+SOBJS = $(SERVER:.c=.o)
+
+SBOBJS = $(SERVER_BONUS:.c=.o)
+
+CLIENT = client.c
+
+COBJS = $(CLIENT:.c=.o)
+
+CLIENT_BONUS = client_bonus.c
+
+CBOBJS = $(CLIENT_BONUS:.c=.o)
+
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 
 LIBFT_DIR = libft
 
@@ -29,24 +43,34 @@ MINITALK_LIB = minitalk.a
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-all: $(NAME)
+all: $(NAME) bonus
 
-$(NAME): $(SO_LONG_LIB) $(OBJS)
-	$(CC) $(CFLAGS) -I/usr/include main.c $(OBJS) $(LIBFT_A) $(MINITALK_LIB) -o $(NAME) > /dev/null
+$(NAME): server client
 
-$(MINITALK_LIB): $(OBJS)
+server: $(SOBJS) 
 	@make -C $(LIBFT_DIR) > /dev/null
-	@ar rcs $(MINITALK_LIB) $(OBJS) $(LIBFT_A) > /dev/null
-	
+	@$(CC) $(CFLAGS) $(INCLUDE) $(SOBJS) $(LIBFT_A) -o server >/dev/null
+
+client: $(COBJS)
+	@make -C $(LIBFT_DIR) > /dev/null
+	@$(CC) $(CFLAGS) $(INCLUDE) $(COBJS) $(LIBFT_A) -o client >/dev/null
+
+bonus: server_bonus client_bonus
+
+server_bonus: $(SBOBJS)
+	@make -C $(LIBFT_DIR) > /dev/null
+	@$(CC) $(CFLAGS) $(INCLUDE) $(SBOBJS) $(LIBFT_A) -o server_bonus >/dev/null
+
+client_bonus: $(CBOBJS)
+	@make -C $(LIBFT_DIR) > /dev/null
+	@$(CC) $(CFLAGS) $(INCLUDE) $(CBOBJS) $(LIBFT_A) -o client_bonus >/dev/null
+
 clean:
-	@rm -f $(OBJS)
-	@make -C $(LIBFT_DIR) clean > /dev/null
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(RM) $(SOBJS) $(COBJS) $(SBOBJS) $(CBOBJS)
 
-fclean:	clean
-	@rm -f $(MINITALK_LIB)
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean > /dev/null
+fclean: clean
+	$(MAKE) fclean -C $(LIBFT_DIR)
+	$(RM) server client server_bonus client_bonus
 
-re:	fclean all
-
-.PHONY: all clean fclean re
+re: fclean all

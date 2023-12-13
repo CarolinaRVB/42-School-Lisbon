@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:38:32 by crebelo-          #+#    #+#              #
-#    Updated: 2023/12/07 12:37:15 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/12/10 19:58:20 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS = so_long_utils_1.c \
 	   so_long_utils_2.c \
 	   so_long_utils_3.c \
 	   so_long_exits.c \
+	   main.c \
 	   so_long_build.c \
 	   so_long_check.c \
 	   so_long_init.c
@@ -41,7 +42,7 @@ all: $(NAME)
 
 $(NAME): $(SO_LONG_LIB) $(OBJS)
 	@make -C minilibx-linux
-	$(CC) $(CFLAGS) -I/usr/include main.c $(OBJS) $(LIBFT_A) $(SO_LONG_LIB) $(MLXFLAGS) -o $(NAME) > /dev/null
+	$(CC) $(CFLAGS) -I/usr/include $(OBJS) $(LIBFT_A) $(SO_LONG_LIB) $(MLXFLAGS) -o $(NAME) > /dev/null
 
 $(SO_LONG_LIB): $(OBJS)
 	@make -C $(LIBFT_DIR) > /dev/null

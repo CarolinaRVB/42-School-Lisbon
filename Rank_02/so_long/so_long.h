@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:38:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/07 17:59:42 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:53:32 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_game
 	int		ex;
 	int		exit;
 	int		vale;
+	int		colexit;
 	int		exit_x;
 	int		exit_y;
 	int		collectible;
@@ -100,6 +101,7 @@ typedef struct s_game
 void	free_map(t_map *map);
 int		free_game(t_game *game, char *str);
 void	close_game(t_game *game, char *msg);
+void	free_mapcpy(char **nmap);;
 
 // so long utils 2
 void	move_right(t_game *game, int *x, int *x_pre);
@@ -132,6 +134,8 @@ int		check_map(t_game *game);
 int		destroy(t_game *game, char *msg);
 int		destroy_x(t_game *game);
 int		error_exit(char *str);
+int		checkmapexit(t_game *game);
+void	floodcheck(t_game *game, int x, int y, char **nmap);
 
 // so long init
 void	init_player(t_game *game);
