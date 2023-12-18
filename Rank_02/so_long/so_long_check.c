@@ -81,13 +81,6 @@ int	mapwalls(t_game *game, int len, int i)
 	return (0);
 }
 
-int	mapsize(t_game *game)
-{
-	if (game->map->height < 3 || game->map->width < 6)
-		return (free_game(game, "Error\nInvalid map size"));
-	return (0);
-}
-
 int	check_map(t_game *game)
 {
 	if (!game->map->outline[0])
@@ -98,8 +91,6 @@ int	check_map(t_game *game)
 	game->colexit = 0;
 	game->tile = 0;
 	game->map->width = ft_strlen_nl(game->map->outline[0]);
-	if (mapsize(game) != 0)
-		return (1);
 	if (mapwalls(game, 0, 0) != 0)
 		return (1);
 	if (strcmpchrs(game->map->outline, "01PEC\n", game->map->height) != 0)
