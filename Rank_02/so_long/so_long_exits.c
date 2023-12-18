@@ -32,16 +32,22 @@ int	error_exit(char *str)
 
 void	floodcheck(t_game *game, int x, int y, char **nmap)
 {
-	if (nmap[y][x] == 'x' || nmap[y][x] == '1')
+	if (game->flag == 0 && (nmap[y][x] == 'x' || nmap[y][x] == '1'
+		|| (y == game->ey && x == game->ex)))
 		return ;
+	else if (game->flag == 1 && (nmap[y][x] == 'x' || nmap[y][x] == '1'
+		|| (y == game->ey && x == game->ex)))
+	{
+		return ;
+	}
 	else if (nmap[y][x] == 'C')
 		game->colexit--;
-	else if (nmap[y][x] == 'E')
+	else if (nmap[y][x]== 'E')
 	{
 		game->vale = 1;
 		return ;
 	}
-	nmap[y][x] = 'x';
+	nmap[y][x]  = 'x';
 	floodcheck(game, x + 1, y, nmap);
 	floodcheck(game, x - 1, y, nmap);
 	floodcheck(game, x, y + 1, nmap);
@@ -55,6 +61,8 @@ int	checkmapexit(t_game *game)
 	int		l;
 
 	i = 0;
+	game->vale = 0;
+	game->colexit = game->collectible;
 	l = game->map->height;
 	nmap = ft_calloc(l + 1, sizeof(char *));
 	while (i < l)

@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:38:32 by crebelo-          #+#    #+#              #
-#    Updated: 2023/12/10 19:58:20 by crebelo-         ###   ########.fr        #
+#    Updated: 2023/12/18 20:48:05 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,13 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 SO_LONG_LIB = so_long.a
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 all: $(NAME)
 
 $(NAME): $(SO_LONG_LIB) $(OBJS)
-	@make -C minilibx-linux
-	$(CC) $(CFLAGS) -I/usr/include $(OBJS) $(LIBFT_A) $(SO_LONG_LIB) $(MLXFLAGS) -o $(NAME) > /dev/null
+	@make -C minilibx-linux > /dev/null
+	@$(CC) $(CFLAGS) -I/usr/include $(OBJS) $(LIBFT_A) $(SO_LONG_LIB) $(MLXFLAGS) -o $(NAME) > /dev/null
 
 $(SO_LONG_LIB): $(OBJS)
 	@make -C $(LIBFT_DIR) > /dev/null

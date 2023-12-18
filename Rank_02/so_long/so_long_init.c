@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:06:20 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/07 17:50:33 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:56:58 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,32 @@ void	init_player(t_game *game)
 	game->p7 = mlx_xpm_file_to_image(game->mlx_ptr, PLAYER7, &w, &h);
 }
 
-void	init_enemy(t_game *game)
+void	init_enemy(t_game *game, int size)
 {
-	void	*img;
-	int		x;
-	int		y;
 	int		zero;
+	int		i;
 
 	zero = 0;
+	i = 0;
+	game->flag = 1;
 	srand(time(NULL));
 	while (!zero)
 	{
-		x = rand() % (game->map->width - 0) + 0;
-		y = rand() % (game->map->height - 0) + 0;
-		if (game->map->outline[y][x] == '0')
+		game->ex = rand() % (game->map->width - 0) + 0;
+		game->ey = rand() % (game->map->height - 0) + 0;
+		if (game->map->outline[game->ey][game->ex] == '0')
 		{
-			zero = 1;
-			game->ex = x;
-			game->ey = y;
+			if (checkmapexit(game) != 0)
+			{
+				game->flag = 2;
+				zero = 1;
+			}
 		}
+		if (i++ > size)
+			return ;
 	}
-	img = game->x;
-	if (img)
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img,
-			game->ex * PIXEL_SIZE, game->ey * PIXEL_SIZE);
-	}
+	if (zero)
+		put_enemy_img(game);
 }
 
 void	init_imgs_files(t_game *game)
@@ -103,8 +103,10 @@ void	populate_map(t_game *game, void	*img)
 int	initiate_game(t_game *game)
 {
 	void	*img;
+	int		size;
 
 	img = NULL;
+	size = game->map->height * game->map->width;
 	game->mlx_ptr = mlx_init();
 	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map->width * PIXEL_SIZE,
 			game->map->height * PIXEL_SIZE, TITLE);
@@ -116,7 +118,7 @@ int	initiate_game(t_game *game)
 	}
 	init_imgs_files(game);
 	populate_map(game, img);
-	init_enemy(game);
+	init_enemy(game, size);
 	display_count(game, 0);
 	mlx_hook(game->win_ptr, 2, 1L << 0, keypress, game);
 	mlx_hook(game->win_ptr, 17, 0, destroy_x, game);

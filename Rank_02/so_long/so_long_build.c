@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:50:05 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/08 20:59:31 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:05:55 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ int	init_struct(t_game *game, char *av)
 	game->map->width = 0;
 	game->map->x = 0;
 	game->map->y = 0;
-	game->ey = 0;
-	game->ex = 0;
+	game->ey = -1;
+	game->ex = -1;
 	game->vale = 0;
+	game->flag = 0;
 	game->map->height = get_map_height(av);
 	game->map->outline = ft_calloc(game->map->height + 1, sizeof(char *));
 	if (!game->map->outline)

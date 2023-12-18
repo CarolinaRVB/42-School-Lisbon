@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:38:10 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/10 19:53:32 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:35:52 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_game
 	int		collectible;
 	int		tile;
 	int		move_count;
+	int		flag;
+	
 	t_map	*map;
 }	t_game;
 
@@ -101,7 +103,8 @@ typedef struct s_game
 void	free_map(t_map *map);
 int		free_game(t_game *game, char *str);
 void	close_game(t_game *game, char *msg);
-void	free_mapcpy(char **nmap);;
+void	free_mapcpy(char **nmap);
+void	put_enemy_img(t_game *game);
 
 // so long utils 2
 void	move_right(t_game *game, int *x, int *x_pre);
@@ -139,7 +142,7 @@ void	floodcheck(t_game *game, int x, int y, char **nmap);
 
 // so long init
 void	init_player(t_game *game);
-void	init_enemy(t_game *game);
+void	init_enemy(t_game *game, int size);
 void	init_imgs_files(t_game *game);
 void	populate_map(t_game *game, void *img);
 int		initiate_game(t_game *game);

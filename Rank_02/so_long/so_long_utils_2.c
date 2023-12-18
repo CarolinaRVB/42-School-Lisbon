@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:47:08 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/08 21:06:01 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:40:43 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_right(t_game *game, int *x, int *x_pre)
 	int	next_x;
 
 	next_x = *x + 1;
-	if (game->player_y == game->ey && next_x == game->ex)
+	if (game->flag == 2 && game->player_y == game->ey && next_x == game->ex)
 		destroy(game, "Oh no, you lost");
 	if (game->map->outline[game->player_y][next_x] != '1'
 		&& game->map->outline[game->player_y][next_x] != 'E')
@@ -42,7 +42,7 @@ void	move_left(t_game *game, int *x, int *x_pre)
 	int	next_x;
 
 	next_x = *x - 1;
-	if (game->player_y == game->ey && next_x == game->ex)
+	if (game->flag == 2 && game->player_y == game->ey && next_x == game->ex)
 		destroy(game, "Oh no, you lost");
 	if (game->map->outline[game->player_y][next_x] != '1'
 		&& game->map->outline[game->player_y][next_x] != 'E')
@@ -67,7 +67,7 @@ void	move_up(t_game *game, int *y, int *y_pre)
 	int	next_y;
 
 	next_y = *y - 1;
-	if (next_y == game->ey && game->player_x == game->ex)
+	if (game->flag == 2 && next_y == game->ey && game->player_x == game->ex)
 		destroy(game, "Oh no, you lost");
 	if (game->map->outline[next_y][game->player_x] != '1'
 		&& game->map->outline[next_y][game->player_x] != 'E')
@@ -92,7 +92,7 @@ void	move_down(t_game *game, int *y, int *y_pre)
 	int	next_y;
 
 	next_y = *y + 1;
-	if (next_y == game->ey && game->player_x == game->ex)
+	if (game->flag == 2 && next_y == game->ey && game->player_x == game->ex)
 		destroy(game, "Oh no, you lost");
 	if (game->map->outline[next_y][game->player_x] != '1'
 		&& game->map->outline[next_y][game->player_x] != 'E')
@@ -117,24 +117,12 @@ int	keypress(int key, t_game *game)
 	if (key == KEY_ESC)
 		close_game(game, "Closing game");
 	if (key == ARROW_RIGHT || key == KEY_D)
-	{
-		display_count(game, ++game->move_count);
 		move_right(game, &(game->player_x), &(game->player_x_pre));
-	}
 	if (key == ARROW_LEFT || key == KEY_A)
-	{
-		display_count(game, ++game->move_count);
 		move_left(game, &(game->player_x), &(game->player_x_pre));
-	}
 	if (key == ARROW_UP || key == KEY_W)
-	{
-		display_count(game, ++game->move_count);
 		move_up(game, &(game->player_y), &(game->player_y_pre));
-	}
 	if (key == ARROW_DOWN || key == KEY_S)
-	{
-		display_count(game, ++game->move_count);
 		move_down(game, &(game->player_y), &(game->player_y_pre));
-	}
 	return (0);
 }

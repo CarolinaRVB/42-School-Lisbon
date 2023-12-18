@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:45:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2023/12/10 19:54:29 by crebelo-         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:36:06 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,15 @@ void	free_mapcpy(char **nmap)
 		i++;
 	}
 	free(nmap);
+}
+void	put_enemy_img(t_game *game)
+{
+	void	*img;
+
+	img = game->x;
+	if (img)
+	{
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img,
+			game->ex * PIXEL_SIZE, game->ey * PIXEL_SIZE);
+	}
 }
