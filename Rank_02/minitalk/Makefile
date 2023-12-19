@@ -14,25 +14,11 @@ NAME = minitalk
 
 CC = cc
 
-INCLUDE = minitalk.h
-
-SERVER = server.c
-
-SERVER_BONUS = server_bonus.c
-
-SOBJS = $(SERVER:.c=.o)
-
-SBOBJS = $(SERVER_BONUS:.c=.o)
-
-CLIENT = client.c
-
-COBJS = $(CLIENT:.c=.o)
-
-CLIENT_BONUS = client_bonus.c
-
-CBOBJS = $(CLIENT_BONUS:.c=.o)
-
 CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+
+RM = rm -f
+
+INCLUDE = minitalk.h
 
 LIBFT_DIR = libft
 
@@ -40,37 +26,65 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 
 MINITALK_LIB = minitalk.a
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+SERVER = server.c
 
-all: $(NAME) bonus
+SERVER_BONUS = server_bonus.c
+
+CLIENT = client.c
+
+CLIENT_BONUS = client_bonus.c
+
+SOBJS = $(SERVER:.c=.o)
+
+SBOBJS = $(SERVER_BONUS:.c=.o)
+
+COBJS = $(CLIENT:.c=.o)
+
+CBOBJS = $(CLIENT_BONUS:.c=.o)
+
+
+.PHONY: all clean fclean re bonus
+
+all: $(NAME)
 
 $(NAME): server client
 
-server: $(SOBJS) 
+server: $(SOBJS)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(SOBJS) $(LIBFT_A) -o server >/dev/null
+	@$(CC) $(CFLAGS) -o server $(SOBJS) $(LIBFT_A)
 
 client: $(COBJS)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(COBJS) $(LIBFT_A) -o client >/dev/null
+	@$(CC) $(CFLAGS) -o client $(COBJS) $(LIBFT_A)
 
 bonus: server_bonus client_bonus
 
 server_bonus: $(SBOBJS)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(SBOBJS) $(LIBFT_A) -o server_bonus >/dev/null
+	@$(CC) $(CFLAGS) -o server_bonus $(SBOBJS) $(LIBFT_A)
 
 client_bonus: $(CBOBJS)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(CBOBJS) $(LIBFT_A) -o client_bonus >/dev/null
+	@$(CC) $(CFLAGS) -o client_bonus $(CBOBJS) $(LIBFT_A)
+
+$(SOBJS): $(SERVER) $(INCLUDE)
+	$(CC) $(CFLAGS) -c $(SERVER) -o $@
+
+$(COBJS): $(CLIENT) $(INCLUDE)
+	$(CC) $(CFLAGS) -c $(CLIENT) -o $@
+
+$(SBOBJS): $(SERVER_BONUS) $(INCLUDE)
+	$(CC) $(CFLAGS) -c $(SERVER_BONUS) -o $@
+
+$(CBOBJS): $(CLIENT_BONUS) $(INCLUDE)
+	$(CC) $(CFLAGS) -c $(CLIENT_BONUS) -o $@
 
 clean:
-	$(MAKE) clean -C $(LIBFT_DIR)
+	@make clean -C $(LIBFT_DIR)
 	$(RM) $(SOBJS) $(COBJS) $(SBOBJS) $(CBOBJS)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
-	$(RM) server client server_bonus client_bonus
+	@make fclean -C $(LIBFT_DIR)
+	$(RM) server client server_bonus client_bonus $(MINITALK_LIB)
 
 re: fclean all
