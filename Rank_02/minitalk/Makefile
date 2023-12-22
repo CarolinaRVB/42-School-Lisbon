@@ -14,63 +14,47 @@ NAME = minitalk
 
 CC = cc
 
-INCLUDE = minitalk.h
-
-SERVER = server.c
-
-SERVER_BONUS = server_bonus.c
-
-SOBJS = $(SERVER:.c=.o)
-
-SBOBJS = $(SERVER_BONUS:.c=.o)
-
-CLIENT = client.c
-
-COBJS = $(CLIENT:.c=.o)
-
-CLIENT_BONUS = client_bonus.c
-
-CBOBJS = $(CLIENT_BONUS:.c=.o)
-
 CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 
 LIBFT_DIR = libft
 
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-MINITALK_LIB = minitalk.a
+SERVER_SRC = server.c
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+CLIENT_SRC = client.c
 
-all: $(NAME) bonus
+SERVER_BONUS_SRC = server_bonus.c
+
+CLIENT_BONUS_SRC = client_bonus.c
+
+all: $(NAME)
 
 $(NAME): server client
 
-server: $(SOBJS) 
+server: $(SERVER_SRC)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(SOBJS) $(LIBFT_A) -o server >/dev/null
+	@$(CC) $(CFLAGS) $(SERVER_SRC) $(LIBFT_A) -o $@
 
-client: $(COBJS)
+client: $(CLIENT_SRC)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(COBJS) $(LIBFT_A) -o client >/dev/null
+	@$(CC) $(CFLAGS) $(CLIENT_SRC) $(LIBFT_A) -o $@
 
 bonus: server_bonus client_bonus
 
-server_bonus: $(SBOBJS)
+server_bonus: $(SERVER_BONUS_SRC)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(SBOBJS) $(LIBFT_A) -o server_bonus >/dev/null
+	@$(CC) $(CFLAGS) $(SERVER_BONUS_SRC) $(LIBFT_A) -o $@
 
-client_bonus: $(CBOBJS)
+client_bonus: $(CLIENT_BONUS_SRC)
 	@make -C $(LIBFT_DIR) > /dev/null
-	@$(CC) $(CFLAGS) $(INCLUDE) $(CBOBJS) $(LIBFT_A) -o client_bonus >/dev/null
+	@$(CC) $(CFLAGS) $(CLIENT_BONUS_SRC) $(LIBFT_A) -o $@
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(RM) $(SOBJS) $(COBJS) $(SBOBJS) $(CBOBJS)
+	$(RM) $(NAME) server client server_bonus client_bonus
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT_DIR)
-	$(RM) server client server_bonus client_bonus
 
 re: fclean all

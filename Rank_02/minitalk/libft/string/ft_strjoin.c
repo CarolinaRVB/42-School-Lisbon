@@ -27,7 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	sjoin = (char *)ft_calloc(s1len + s2len + 1, sizeof(char));
 	if (sjoin)
-	{	
+	{
 		while (s1[i] != '\0')
 		{
 			sjoin[i] = s1[i];

@@ -35,12 +35,11 @@ void	send_message(int PID, char *msg)
 				kill(PID, SIGUSR1);
 			else
 				kill(PID, SIGUSR2);
-			usleep(500);
+			usleep(100);
 		}
 		msg++;
 	}
 }
-
 
 int	main(int argc, char **argv)
 {
