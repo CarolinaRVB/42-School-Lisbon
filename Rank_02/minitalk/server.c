@@ -40,8 +40,6 @@ int	main(void)
 	if (sigaction(SIGUSR1, &sigact, NULL) == -1
 		|| sigaction(SIGUSR2, &sigact, NULL) == -1)
 		return (ft_error_exit("Error\nIssue with sigaction.\n"));
-	sigaction(SIGUSR1, &sigact, NULL);
-	sigaction(SIGUSR2, &sigact, NULL);
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
 	while (1)

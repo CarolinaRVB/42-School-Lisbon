@@ -33,14 +33,14 @@ int	send_message(int PID, char *msg)
 		{
 			if (c >> bits & 1)
 			{
-				if(kill(PID, SIGUSR1) == -1)
+				if (kill(PID, SIGUSR1) == -1)
 					return (ft_error_exit("Error\nUnable to send signal."));
-			}	
+			}
 			else
 			{
-				if(kill(PID, SIGUSR2) == -1)
+				if (kill(PID, SIGUSR2) == -1)
 					return (ft_error_exit("Error\nUnable to send signal."));
-			}	
+			}
 			usleep(100);
 		}
 		msg++;
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 	int					i;
 
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_flags = 0;
 	sa.sa_handler = handle_signal;
 	i = 0;
 	sigemptyset(&sa.sa_mask);
@@ -67,7 +67,8 @@ int	main(int argc, char **argv)
 	}
 	if (!argv[2][0])
 		return (ft_error_exit("Error\nEmpty message."));
-	sigaction(SIGUSR1, &sa, NULL);
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+		(ft_error_exit("Error\nIssue with sigaction.\n"));
 	if (send_message(ft_atoi(argv[1]), argv[2]) != 0)
 		return (1);
 	if (send_message(ft_atoi(argv[1]), "\n") != 0)
