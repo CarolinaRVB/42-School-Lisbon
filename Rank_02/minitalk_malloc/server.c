@@ -26,32 +26,11 @@ void	add_chr_to_msg(char chr, unsigned long nchrs)
 			ft_memmove(new_msg, msg, nchrs);
 			free(msg);
 		}
-
-	new_msg[nchrs] = chr;
-	new_msg[nchrs + 1] = '\0';
-	msg = new_msg;
+		new_msg[nchrs] = chr;
+		new_msg[nchrs + 1] = '\0';
+		msg = new_msg;
 	}
 }
-
-
-// void	add_chr_to_msg(char chr, unsigned long nchrs)
-// {
-// 	char	*new_msg = NULL;
-
-// 	if (msg == NULL)
-// 	{
-// 		msg = (char *)malloc(sizeof(char) * (nchrs + 1));
-// 	}
-// 	if (msg)
-// 	{
-// 		new_msg = (char *)malloc(sizeof(char) * (nchrs + 1));
-// 		new_msg = ft_memmove(new_msg, msg, nchrs + 1);
-// 	}
-// 	new_msg[nchrs] = chr;
-// 	new_msg[nchrs + 1] = '\0';
-// 	msg = new_msg;
-// }
-
 
 void	handler(int num)
 {
@@ -94,11 +73,7 @@ int	main(void)
 		|| sigaction(SIGUSR2, &sigact, NULL) == -1)
 		return (ft_error_exit("Error\nIssue with sigaction.\n"));
 	while (1)
-	{
-
 		pause();
-		
-	}
 	return (EXIT_SUCCESS);
 }
 

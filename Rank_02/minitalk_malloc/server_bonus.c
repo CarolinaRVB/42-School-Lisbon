@@ -12,10 +12,31 @@
 
 #include "minitalk.h"
 
+char	*msg = NULL;
+
+void	add_chr_to_msg(char chr, unsigned long nchrs)
+{
+	char	*new_msg;
+
+	new_msg = (char *)malloc(sizeof(char) * (nchrs + 2));
+	if (new_msg)
+	{
+		if (msg)
+		{
+			ft_memmove(new_msg, msg, nchrs);
+			free(msg);
+		}
+		new_msg[nchrs] = chr;
+		new_msg[nchrs + 1] = '\0';
+		msg = new_msg;
+	}
+}
+
 void	siginfo_handler(int num, siginfo_t *info, void *context)
 {
 	static int	c = 0;
-	static int	i = 0;
+	static unsigned long	i = 0;
+	static unsigned long	chrs = -1;
 
 	(void)context;
 	if (num == SIGUSR1)
@@ -25,10 +46,19 @@ void	siginfo_handler(int num, siginfo_t *info, void *context)
 	i++;
 	if (i == 8)
 	{
-		ft_putchar_fd(c, 1);
+		chrs += 1;
+		if (c == 10)
+		{
+			kill(info->si_pid, SIGUSR1);
+			ft_printf("%s\n", msg);
+			free(msg);
+			chrs = -1;
+			msg = NULL;
+		}
+		else
+			add_chr_to_msg(c, chrs);
 		i = 0;
 		c = 0;
-		kill(info->si_pid, SIGUSR1);
 	}
 }
 

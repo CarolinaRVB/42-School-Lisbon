@@ -33,7 +33,7 @@ int	send_message(int PID, char *msg)
 				if (kill(PID, SIGUSR2) == -1)
 					return (ft_error_exit("Error\nUnable to send signal."));
 			}
-			usleep(100);
+			usleep(1000);
 		}
 		msg++;
 	}
