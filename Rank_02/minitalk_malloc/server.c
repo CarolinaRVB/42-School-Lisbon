@@ -11,40 +11,53 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
-
-void print_binary(unsigned char c) {
-    for (int i = 7; i >= 0; --i) {
-        printf("%d", (c >> i) & 1);
-    }
-    printf("\n");
-}
 
 char	*msg = NULL;
 
-void	add_chr_to_msg(char chr, int nchrs)
+void	add_chr_to_msg(char chr, unsigned long nchrs)
 {
-	char	*new_msg = NULL;
+	char	*new_msg;
 
-	if (msg == NULL)
+	new_msg = (char *)malloc(sizeof(char) * (nchrs + 2));
+	if (new_msg)
 	{
-		msg = (char *)malloc(sizeof(char) * (nchrs + 1));
-	}
-	if (msg)
-	{
-		new_msg = (char *)malloc(sizeof(char) * (nchrs + 1));
-		new_msg = ft_memmove(new_msg, msg, nchrs + 1);
-	}
+		if (msg)
+		{
+			ft_memmove(new_msg, msg, nchrs);
+			free(msg);
+		}
+
 	new_msg[nchrs] = chr;
 	new_msg[nchrs + 1] = '\0';
 	msg = new_msg;
+	}
 }
+
+
+// void	add_chr_to_msg(char chr, unsigned long nchrs)
+// {
+// 	char	*new_msg = NULL;
+
+// 	if (msg == NULL)
+// 	{
+// 		msg = (char *)malloc(sizeof(char) * (nchrs + 1));
+// 	}
+// 	if (msg)
+// 	{
+// 		new_msg = (char *)malloc(sizeof(char) * (nchrs + 1));
+// 		new_msg = ft_memmove(new_msg, msg, nchrs + 1);
+// 	}
+// 	new_msg[nchrs] = chr;
+// 	new_msg[nchrs + 1] = '\0';
+// 	msg = new_msg;
+// }
+
 
 void	handler(int num)
 {
 	static int	c = 0;
-	static int	i = 0;
-	static int	chrs = -1;
+	static unsigned long	i = 0;
+	static unsigned long	chrs = -1;
 
 	if (num == SIGUSR1)
 		c = (c << 1) | 1;
@@ -54,7 +67,6 @@ void	handler(int num)
 	if (i == 8)
 	{
 		chrs += 1;
-		print_binary(c);
 		if (c == 10)
 		{
 			ft_printf("%s\n", msg);
@@ -86,6 +98,7 @@ int	main(void)
 
 		pause();
 		
-	}	
+	}
 	return (EXIT_SUCCESS);
 }
+
