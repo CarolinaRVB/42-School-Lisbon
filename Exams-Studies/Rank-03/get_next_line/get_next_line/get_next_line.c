@@ -98,11 +98,6 @@ int get_bytes(int fd, char **buffer)
 	if (!line)
 		return (0);
 	bytes = read(fd, line, BUFFER_SIZE);
-	if (bytes == 0 && size == 0)
-	{
-		free(line);
-		return (-1);
-	}
 	if (bytes)
 	{
 		temp = (char *)ft_calloc(size + bytes + 1, sizeof(char));
@@ -143,7 +138,7 @@ char *get_next_line(int fd)
 	// if (fd <= 0 || BUFFER_SIZE <= 0)  //  For exam you can't check this!!
 	// 	return (NULL);
 	bytes = get_bytes(fd, &buffer);
-	if (bytes == -1)
+	if (bytes == 0 && ft_strlen(buffer) == 0)
 	{
 		free(buffer);
 		line = NULL;
@@ -157,15 +152,12 @@ char *get_next_line(int fd)
 		if (i > ft_strlen(buffer))
 		{
 			if (bytes != 0)
-			{	bytes = get_bytes(fd, &buffer);}
+				bytes = get_bytes(fd, &buffer);
 			else
 			{
-				if (buffer)
-				{
-					line = (char *)ft_calloc(i + 1, sizeof(char));
-					line = buffer;
-					return (line);
-				}
+				line = (char *)ft_calloc(i + 1, sizeof(char));
+				line = buffer;
+				return (line);
 			}
 		}
 		else
