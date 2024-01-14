@@ -14,7 +14,7 @@
 #include "unistd.h"
 #include <stdio.h>
 #include <string.h>
-# define BUFFER_SIZE 10
+// # define BUFFER_SIZE 10
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -140,8 +140,8 @@ char *get_next_line(int fd)
 	char		*line ;
 	int			i;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	// if (fd <= 0 || BUFFER_SIZE <= 0)  //  For exam you can't check this!!
+	// 	return (NULL);
 	bytes = get_bytes(fd, &buffer);
 	if (bytes == -1)
 	{
@@ -175,6 +175,7 @@ char *get_next_line(int fd)
 			return (line);
 		}
 	}
+	return (NULL);
 }
 
 // #include <fcntl.h>
@@ -182,7 +183,7 @@ char *get_next_line(int fd)
 // #include <stdlib.h>
 // #include <stdio.h>
 // int main(void) {
-// 	int fd = open("example2.txt", O_RDONLY);
+// 	int fd = open("test", O_RDONLY);
 // 	if (fd == -1) {
 // 		perror("Failed to open file");
 // 		return 1;
