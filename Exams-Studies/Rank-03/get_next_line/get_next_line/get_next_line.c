@@ -141,8 +141,7 @@ char *get_next_line(int fd)
 	if (bytes == 0 && ft_strlen(buffer) == 0)
 	{
 		free(buffer);
-		line = NULL;
-		return (line);
+		return (NULL);
 	}
 	while (bytes || buffer)
 	{
@@ -154,11 +153,7 @@ char *get_next_line(int fd)
 			if (bytes != 0)
 				bytes = get_bytes(fd, &buffer);
 			else
-			{
-				line = (char *)ft_calloc(i + 1, sizeof(char));
-				line = buffer;
-				return (line);
-			}
+				return (buffer);
 		}
 		else
 		{
@@ -175,7 +170,7 @@ char *get_next_line(int fd)
 // #include <stdlib.h>
 // #include <stdio.h>
 // int main(void) {
-// 	int fd = open("test", O_RDONLY);
+// 	int fd = open("example2.txt", O_RDONLY);
 // 	if (fd == -1) {
 // 		perror("Failed to open file");
 // 		return 1;
