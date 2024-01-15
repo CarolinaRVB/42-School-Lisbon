@@ -30,7 +30,7 @@ void	ft_putstr(char *str, size_t *len)
 	}
 }
 
-void	ft_putnbr(int nb, size_t *len)
+void	ft_putnbr(long long int nb, size_t *len)
 {
 	if (nb < 0)
 	{
@@ -47,7 +47,6 @@ void	ft_putnbr(int nb, size_t *len)
 
 void	ft_putdec(long long int nb, size_t *len)
 {
-
 	char	*base;
 
 	base = "0123456789abcdef";
@@ -62,7 +61,6 @@ void	ft_putdec(long long int nb, size_t *len)
 	(*len)++;
 	write(1, &base[nb % 16], 1);
 }
-
 
 int	ft_printf(const char *format, ... )
 {
@@ -83,23 +81,26 @@ int	ft_printf(const char *format, ... )
 			if (format[i] == 's')
 				ft_putstr(va_arg(args, char *), &len);
 			else if (format[i] == 'd')
-				ft_putnbr(va_arg(args, int), &len);
+				ft_putnbr((long long int)va_arg(args, int), &len);
 			else if (format[i] == 'x')
 				ft_putdec(va_arg(args, unsigned int), &len);
 		}
 		else
+		{	
+			len++;
 			write(1, &format[i], 1);
+		}
 		i++;
 	}
 	va_end(args);
 	return (len);
 }
 
-int	main()
-{
-	ft_printf("%s\n", "toto");
-	ft_printf("\n");
-	ft_printf("Magic %s is %d", "number", 42);
-	ft_printf("\n");
-	ft_printf("Hexadecimal for %d is %x\n", 42, 42);
-}
+// int	main()
+// {
+// 	ft_printf("%s\n", "toto");
+// 	ft_printf("\n");
+// 	ft_printf("Magic %s is %d", "number", -2147483649);
+// 	ft_printf("\n");
+// 	ft_printf("Hexadecimal for %d is %x\n", 886, 886);
+// }
