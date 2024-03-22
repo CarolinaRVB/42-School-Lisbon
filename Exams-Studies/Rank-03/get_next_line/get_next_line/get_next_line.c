@@ -102,7 +102,7 @@ int get_bytes(int fd, char **buffer)
 	{
 		temp = (char *)ft_calloc(size + bytes + 1, sizeof(char));
 		if (!temp)
-			return(-1);
+			return(0);
 		i = 0;
 		if (size)
 		{
@@ -165,29 +165,29 @@ char *get_next_line(int fd)
 	return (NULL);
 }
 
-// #include <fcntl.h>
-// #include <unistd.h>
-// #include <stdlib.h>
-// #include <stdio.h>
-// int main(void) {
-// 	int fd = open("example2.txt", O_RDONLY);
-// 	if (fd == -1) {
-// 		perror("Failed to open file");
-// 		return 1;
-// 	}
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+int main(void) {
+	int fd = open("example2.txt", O_RDONLY);
+	if (fd == -1) {
+		perror("Failed to open file");
+		return 1;
+	}
 
-// 	char *line;
-// 	int		w;
-// 	w = 0;
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (!line)
-// 		{	break ;}
-// 		printf("%s", line);
-// 		free(line);
-// 	}
+	char *line;
+	int		w;
+	w = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+		{	break ;}
+		printf("%s", line);
+		free(line);
+	}
 	
-// 	close(fd);
-// 	return 0;
-// }
+	close(fd);
+	return 0;
+}
