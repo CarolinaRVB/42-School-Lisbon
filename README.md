@@ -1,4 +1,7 @@
 # Welcome to 42 School Projects
+<div style="text-align:center">
+    <img src="imgs/42-Lisboa@3x-420x140.png" alt="42 School Banner">
+</div>
 
 Welcome to the repository containing projects completed as part of the 42 school program! Below you'll find a list of projects along with brief descriptions and links to their respective directories.
 
