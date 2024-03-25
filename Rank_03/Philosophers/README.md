@@ -40,3 +40,11 @@ Ensure compliance with the project's norms regarding leaks, crashes, undefined b
 
 ## Note
 Philosophers may seem peaceful, but in this simulation, philosophy can be deadly!
+
+## Resources
+
+[Medium article](https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2) - Philosophers 42 guide;<br>
+[Youtube video](https://www.youtube.com/watch?v=UGQsvVKwe90&t=1788s&ab_channel=JamshidbekErgashev) by
+Jamshidbek Ergashev; <br>
+[Video tutorials on threads](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2&ab_channel=CodeVault) - CodeVault;<br>
+
