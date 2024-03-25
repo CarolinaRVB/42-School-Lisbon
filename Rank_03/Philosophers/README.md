@@ -28,12 +28,25 @@ Both programs share the same usage format:
 ./philo [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [number_of_times_each_philosopher_must_eat]
 ./philo_bonus [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [number_of_times_each_philosopher_must_eat]
 
-
 ## Compilation
 Run `make` in the respective directories to compile each program.
 
 ## External Functions
-Both programs use standard C functions such as `memset`, `printf`, `malloc`, `free`, `write`, `usleep`, `gettimeofday`, `pthread_create`, `pthread_detach`, `pthread_join`, `pthread_mutex_init`, `pthread_mutex_destroy`, `pthread_mutex_lock`, `pthread_mutex_unlock`. Additionally, `philo_bonus` uses `fork`, `kill`, `exit`, `waitpid`, `sem_open`, `sem_close`, `sem_post`, `sem_wait`, `sem_unlink`.
+Both programs use standard C functions, including:
+
+- **memset**: Fills a block of memory with a specified value.
+- **printf**: Prints formatted output to the standard output.
+- **malloc**: Dynamically allocates memory.
+- **free**: Deallocates memory.
+- **write**: Writes data to a file descriptor.
+- **usleep**: Suspends execution of the calling thread for a specified number of microseconds.
+- **gettimeofday**: Gets the current time.
+- **pthread_create**: Creates a new thread.
+- **pthread_detach**: Detaches a thread.
+- **pthread_join**: Waits for a thread to terminate.
+- **pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock**: Functions for thread synchronization using mutexes.
+
+Additionally, `philo_bonus` uses `fork`, `kill`, `exit`, `waitpid`, `sem_open`, `sem_close`, `sem_post`, `sem_wait`, `sem_unlink`.
 
 ## Norm Compliance
 Ensure compliance with the project's norms regarding leaks, crashes, undefined behavior, and coding standards.
