@@ -6,8 +6,14 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:36:13 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/03/25 08:57:36 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:21:32 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
+
+int	error_msg(char *msg, int n)
+{
+	printf(msg, n);
+	return (1);
+}
