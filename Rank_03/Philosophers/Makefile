@@ -1,7 +1,7 @@
 NAME := philo
 
 SRC :=	src/main.c \
-		src/philosophers.c
+		src/philosophers_utils.c
 
 OBJ := $(SRC:.c=.o)
 
